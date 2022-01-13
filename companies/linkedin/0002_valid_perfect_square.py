@@ -22,6 +22,9 @@ Constraints:
 1 <= num <= 2^31 - 1
 '''
 
+# Time complexity: O(log(n))
+# Space complexity: O(1)
+
 class Solution:
     def isPerfectSquare(self, num: int) -> bool:
         # return math.sqrt(num)
