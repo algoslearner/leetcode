@@ -28,4 +28,29 @@ Output:
 Explanation:
 No water will be trapped, as there is no space to trap it.
 '''
+# TC : O(N)
+# SC : O(N)
 
+import math
+
+def getTrappedRainWater(arr):
+  # Write your code here
+  leftmax = [0] * len(arr)
+  rightmax = [0] * len(arr)
+  
+  maxvalue = -math.inf
+  for i in range(len(arr)):
+    leftmax[i] = max(maxvalue,arr[i])
+    maxvalue = leftmax[i]
+  
+  maxvalue = -math.inf
+  for i in range(len(arr)-1, -1, -1):
+    rightmax[i] = max(maxvalue,arr[i])
+    maxvalue = rightmax[i]
+  
+  # calculate trapped rain water
+  ans = 0
+  for i in range(len(arr)):
+    ans += min(leftmax[i],rightmax[i]) - arr[i]
+  
+  return ans
