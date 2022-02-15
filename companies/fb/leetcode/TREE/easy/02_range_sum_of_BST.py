@@ -49,3 +49,18 @@ class Solution:
         dfs(root)
         return self.ans
         
+
+ ######## OR #######
+
+class Solution:
+    def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
+        if not root:
+            return 0
+        
+        if high < root.val:
+            return self.rangeSumBST(root.left, low, high)
+        elif low > root.val:
+            return self.rangeSumBST(root.right, low, high)
+        else:
+            return self.rangeSumBST(root.left, low, high) + root.val + self.rangeSumBST(root.right, low, high)
+        
