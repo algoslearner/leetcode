@@ -1,33 +1,34 @@
 '''
-In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different order. The order of the alphabet is some permutation of lowercase letters.
+There is a new alien language that uses the English alphabet. However, the order among the letters is unknown to you.
 
-Given a sequence of words written in the alien language, and the order of the alphabet, return true if and only if the given words are sorted lexicographically in this alien language.
+You are given a list of strings words from the alien language's dictionary, where the strings in words are sorted lexicographically by the rules of this new language.
+
+Return a string of the unique letters in the new alien language sorted in lexicographically increasing order by the new language's rules. If there is no solution, return "". If there are multiple solutions, return any of them.
+
+A string s is lexicographically smaller than a string t if at the first letter where they differ, the letter in s comes before the letter in t in the alien language. If the first min(s.length, t.length) letters are the same, then s is smaller if and only if s.length < t.length.
 
  
 
 Example 1:
 
-Input: words = ["hello","leetcode"], order = "hlabcdefgijkmnopqrstuvwxyz"
-Output: true
-Explanation: As 'h' comes before 'l' in this language, then the sequence is sorted.
+Input: words = ["wrt","wrf","er","ett","rftt"]
+Output: "wertf"
 Example 2:
 
-Input: words = ["word","world","row"], order = "worldabcefghijkmnpqstuvxyz"
-Output: false
-Explanation: As 'd' comes after 'l' in this language, then words[0] > words[1], hence the sequence is unsorted.
+Input: words = ["z","x"]
+Output: "zx"
 Example 3:
 
-Input: words = ["apple","app"], order = "abcdefghijklmnopqrstuvwxyz"
-Output: false
-Explanation: The first three characters "app" match, and the second string is shorter (in size.) According to lexicographical rules "apple" > "app", because 'l' > '∅', where '∅' is defined as the blank character which is less than any other character (More info).
+Input: words = ["z","x","z"]
+Output: ""
+Explanation: The order is invalid, so return "".
  
 
 Constraints:
 
 1 <= words.length <= 100
-1 <= words[i].length <= 20
-order.length == 26
-All characters in words[i] and order are English lowercase letters.
+1 <= words[i].length <= 100
+words[i] consists of only lowercase English letters.
 '''
 # https://leetcode.com/problems/alien-dictionary/discuss/1564871/Python3-or-Topological-Sort-or-99.95-faster
 
