@@ -102,3 +102,24 @@ class Solution:
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(w)
 # param_1 = obj.pickIndex()
+
+
+
+'''
+Complexity Analysis
+
+Let NN be the length of the input list.
+
+Time Complexity
+
+For the constructor function, the time complexity would be \mathcal{O}(N)O(N), which is due to the construction of the prefix sums.
+
+For the pickIndex() function, this time its time complexity would be \mathcal{O}(\log{N})O(logN), since we did a binary search on the prefix sums.
+
+Space Complexity
+
+For the constructor function, the space complexity remains \mathcal{O}(N)O(N), which is again due to the construction of the prefix sums.
+
+For the pickIndex() function, its space complexity 
+would be \mathcal{O}(1)O(1), since it uses constant memory. Note, here we consider the prefix sums that it operates on, as the input of the function.
+'''
