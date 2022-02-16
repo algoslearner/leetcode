@@ -3,7 +3,7 @@
 I've found this video useful explaining how you would derive this solution in an interview setting :)
 '''
 
-https://www.youtube.com/watch?v=py3R23aAPCA
+![YouTube Link](https://www.youtube.com/watch?v=py3R23aAPCA)
 
 '''
 Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
