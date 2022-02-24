@@ -72,4 +72,40 @@ class Solution:
             output.append([account] + sorted(nodes))
             
         return output
+   
+   
+   # METHOD 2 - DFS - clearer functions to understand
+   class Solution: 
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        graph = defaultdict(list)
+        visited = set()
+        merged_accounts = []
         
+        def buildGraph(accounts):
+            for account in accounts:
+                first_email = account[1]
+                other_emails = account[2:]
+                graph[first_email].extend(other_emails)
+                for other_email in other_emails:
+                    graph[other_email].append(first_email)
+                    
+        def dfs(merged_account, email):
+            visited.add(email)
+            merged_account.append(email)
+            for neighbour in graph[email]:
+                if neighbour not in visited:
+                    dfs(merged_account, neighbour)
+            
+        
+        buildGraph(accounts)
+        for account in accounts:
+            name = account[0]
+            first_email = account[1]
+            if first_email not in visited:
+                merged_account = []
+                dfs(merged_account, first_email)
+                merged_accounts.append([name] + sorted(merged_account))
+        
+        return merged_accounts
+    
+    # https://leetcode.com/problems/accounts-merge/discuss/109161/Python-Simple-DFS-with-explanation!!!    
