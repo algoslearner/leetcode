@@ -33,6 +33,7 @@ class Solution:
         # Time : O(Nk)
         # Space : O(Nk)
         
+        '''
         # Create a hash value
         def get_hash(string: str):
             key = []
@@ -49,4 +50,14 @@ class Solution:
         
         # Return a list of all of the grouped strings
         return list(groups.values())
+        '''
+        
+        # use the differences between each characters as the key in the map
+        seqmap = defaultdict(list)
+        for s in strings:
+            seq = [(ord(s[n+1])-ord(s[n])) % 26 for n in range(len(s)-1)]
+            seqmap[tuple(seq)].append(s)
+
+        return list(seqmap.values())
+        
         
