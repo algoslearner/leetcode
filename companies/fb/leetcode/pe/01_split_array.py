@@ -24,7 +24,7 @@ Constraints:
 1 <= nums[i] <= 100
 '''
 
-# Time : O(n)
+# Time : O(nk)
 # Space: O(n)
 
 class Solution:
