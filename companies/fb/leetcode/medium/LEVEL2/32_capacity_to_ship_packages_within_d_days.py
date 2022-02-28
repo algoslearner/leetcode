@@ -72,6 +72,9 @@ Minimum Number of Days to Make m Bouquets
 # code : 
 # https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/discuss/256729/JavaC%2B%2BPython-Binary-Search
 
+# Time: O(n log m)
+# Space : O(1)
+
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         left, right = max(weights), sum(weights)
