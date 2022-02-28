@@ -38,6 +38,8 @@ nums2.length == n
  
 
 Follow up: Can you come up with an algorithm that runs in O(m + n) time?
+        
+'''
 
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
@@ -70,4 +72,3 @@ class Solution:
             nums1[m+n-1] = nums2[n-1]
             n -= 1
         
-'''
