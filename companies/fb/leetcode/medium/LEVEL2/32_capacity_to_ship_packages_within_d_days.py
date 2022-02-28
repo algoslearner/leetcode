@@ -89,5 +89,4 @@ class Solution:
                 cur += w
             if need > days: left = mid + 1
             else: right = mid
-        return left= mid
         return left
