@@ -30,6 +30,7 @@ All the strings of wordDict are unique.
 '''
 
 # https://leetcode.com/problems/word-break-ii/discuss/44311/Python-easy-to-understand-solution
+# BACKTRACKING
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
