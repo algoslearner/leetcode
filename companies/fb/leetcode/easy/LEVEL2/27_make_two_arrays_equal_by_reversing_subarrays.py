@@ -38,4 +38,22 @@ class Solution:
     def canBeEqual(self, target: List[int], arr: List[int]) -> bool:
         # TC : O(n log n)
          return sorted(target) == sorted(arr)
-        
+  
+  '''
+Sure you can do it in 1-line using library methods, but if you do that on the interview you will get a follow up question how to do it without the library.
+So here you go: '''
+
+# IDEA: if we can make them equal that means they contain same numbers in same quantities
+#       build dictionary with target counts, then iterate over input array making sure that counts match
+#       O(N) time, O(N) space
+#
+class Solution:
+    def canBeEqual(self, target: List[int], arr: List[int]) -> bool:
+        counter = collections.defaultdict(int)
+        for t in target:
+            counter[t] += 1
+        for a in arr:
+            if a not in counter or counter[a] == 0:
+                return False
+            counter[a] -= 1
+        return all(v == 0 for v in counter.values())
