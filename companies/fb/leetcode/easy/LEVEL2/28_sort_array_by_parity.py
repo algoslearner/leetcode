@@ -24,6 +24,10 @@ Constraints:
 
 class Solution:
     def sortArrayByParity(self, nums: List[int]) -> List[int]:
+        # extra space
+        # TC : O(n)
+        # SC : O(n)
+        '''
         even = []
         odd = []
         for i in nums:
@@ -32,3 +36,15 @@ class Solution:
             else:
                 odd.append(i)
         return even + odd
+        '''
+        
+        # two pointers
+        # TC : O(N)
+        # SC : O(1)
+        left = 0
+        for i in range(len(nums)):
+            if nums[i] % 2 == 0:
+                nums[left], nums[i] = nums[i], nums[left]
+                left += 1
+            
+        return nums
