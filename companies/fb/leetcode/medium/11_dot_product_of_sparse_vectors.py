@@ -58,6 +58,18 @@ class SparseVector:
 # v2 = SparseVector(nums2)
 # ans = v1.dotProduct(v2)
 
+################################################
+'''
+I got this question at my FB onsite in August 2020. 
+The interviewer did not accept my hashmap solution. 
+He told me that hashing/lookups, while on surface look efficient, for large sparse vectors, 
+hashing function takes up bulk of the computation that we might be better off with the first method. 
+Wihile proposing hashmap/set solutions, take a minute to think about the complexity hashing function.
+
+Update from recent FB onsite, interviewer didn't accept the HASHMAP solution and wanted to see the 2 pointers solution,
+in addition he also came up with a follow up question, 
+what would you do if one of the vectors werent fully "sparse" -> hint use binary search
+'''
 
 
 # TWO POINTER SOLUTION
