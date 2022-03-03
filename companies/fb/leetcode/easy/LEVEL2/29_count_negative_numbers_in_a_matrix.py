@@ -51,18 +51,36 @@ move col index left and verify condition as stated above
 if condition is not met, move down one row
 repeat conditions listed above
 '''
+ 
 class Solution:
     def countNegatives(self, grid: List[List[int]]) -> int:
-		# start from the end of the row, hence col is -1
-        col_start = -1
-        col_end = col_start - (len(grid[0])-1)
-        count, row_index = 0, 0
-		# repeat checks as long as the col and row are within the grid
-        while col_start >= col_end and row_index < len(grid):
-            if grid[row_index][col_start] < 0:
-                count += len(grid)-row_index
-                col_start -= 1
-            else:
-                row_index += 1
+        
+        # return str(grid).count('-')
+        
+        # BRUTE FORCE
+        # TC : O(n*m)
+        # SC : O(1)
+        '''
+        count = 0
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                if grid[row][col] < 0:
+                    count += 1
         return count
-  
+        '''
+        
+        # SEARCH ROW By ROW
+        # TC: O(n+m)
+        # SC : O(1)
+        n = len(grid[0])  # O(n)
+        row = len(grid)-1  # O(m)
+        col = 0
+        count = 0
+        while row >= 0 and col < n:  # O(n) + O(m)
+            if grid[row][col] < 0:
+                count += n - col
+                row -= 1
+            else:
+                col += 1
+        return count
+    
