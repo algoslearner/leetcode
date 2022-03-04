@@ -26,6 +26,8 @@ words[i] consists of lowercase English letters.
 k is in the range [1, The number of unique words[i]]
 '''
 
+# Use lambda to sort the dictionary in desc order based on words frequency and if frequency are equal then sort dictionary in asc order based on the word alphabet.
+
 class Solution:
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
         # TC : O(n log n)
