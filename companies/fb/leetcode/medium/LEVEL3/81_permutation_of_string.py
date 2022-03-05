@@ -22,6 +22,7 @@ Constraints:
 s1 and s2 consist of lowercase English letters.
 '''
 
+# https://leetcode.com/problems/find-all-anagrams-in-a-string/
 # https://leetcode.com/problems/permutation-in-string/discuss/1761953/Python3-SLIDING-WINDOW-OPTIMIZED-(-)-Explained
 '''
 The only thing we care about any particular substring in s2 is having the same number of characters as in the s1. So we create a hashmap with the count of every character in the string s1. Then we slide a window over the string s2 and decrease the counter for characters that occurred in the window. As soon as all counters in the hashmap get to zero that means we encountered the permutation.
