@@ -5,7 +5,7 @@ When it would print out a number exactly divisible by 6, print "In" instead. Whe
 '''
 
 class Solution:
-  def printLinkedin():
+  def printLinkedin(self):
     output = []
     for i in range(1,101):
       if i % 4 == 0 and i % 6 == 0:
@@ -17,3 +17,6 @@ class Solution:
       else:
         output.append(str(i))
     print(output)
+	
+class_instance = Solution()
+class_instance.printLinkedin()
