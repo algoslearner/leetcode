@@ -30,41 +30,41 @@ Velociraptorr,2.62,bipedal
 '''
 
 import math
+import re
 
-leg_length = {}
-stride_length = {}
-pedal = {}
-speed = {}
+dino = {}
+bipedals = {}
+g = 9.8
 
 # read the input file - 1
-with open(dataset1.csv,"r") as dataset1:
+with open("dataset1.csv","r") as dataset1:
 	for line in dataset1:
-		line_list = line.split(",")
-		if line_list[0] != "NAME":
-			dinoName = line_list[0]
-			leg_length[dinoName] = line_list[1]
+		details = line.split(",")
+		if details[0] != "NAME":
+			name = details[0]
+			dino[name] = details[1]
 
 # read the input file - 2
-with open(dataset2.csv,"r") as dataset2:
+with open("dataset2.csv","r") as dataset2:
 	for line2 in dataset2:
-		line2_list = line2.split(",")
-		if line2_list[0] != "NAME":
-			dinoName = line2_list[0]
-			leg_length[dinoName] = line2_list[1]
-			pedal[dinoName] = line2_list[1]
+		details2 = line2.split(",")
+		if details2[0] != "NAME" and details2[2].rstrip() == "bipedal":
+			name = details2[0]
+			if name in dino:
+				leg_len = float(dino[name])
+				stride_len = float(details2[1])
+				# speed = ((STRIDE_LENGTH / LEG_LENGTH) - 1) * SQRT(LEG_LENGTH * g)
+				s = ((stride_len / leg_len) - 1) * (math.sqrt(leg_len * g))
+				s = round(s,4)
+				bipedals[name] = s
+			else:
+				# print("New bipedal dinosaur: "+name)
+				continue
+	
 
-# speed calculation
-# speed = ((STRIDE_LENGTH / LEG_LENGTH) - 1) * SQRT(LEG_LENGTH * g)
-g = 9.8
-for name in pedal:
-	if pedal[name] = "bipedal":
-		stride_len = stride_length[name]
-		leg_len = leg_length[name]
-		speed = ((float(stride_len) / float(leg_len)) - 1) * (math.sqrt(float(leg_len) * g))
-		speed[speed] = name
-		
+# print the names of only the bipedal dinosaurs from fastest to slowest	
+print(bipedals)	
+sorted_keys = reversed(sorted(bipedals, key=bipedals.get))
+for name in sorted_keys:
+	print(name)
 
-# print the names of only the bipedal dinosaurs from fastest to slowest		
-names = reversed(sorted(speed.keys()))
-for i in names:
-	print(speed[i])
