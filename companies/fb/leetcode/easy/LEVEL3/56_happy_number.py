@@ -33,6 +33,10 @@ Constraints:
 # READ
 # https://leetcode.com/problems/happy-number/solution/
 
+# use two-pointer to detect cycle
+# TC: O(log n)
+# SC : O(1)
+
 class Solution:
     def isHappy(self, n: int) -> bool:
         slow = n
