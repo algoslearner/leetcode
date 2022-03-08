@@ -113,3 +113,16 @@ with open('output.txt','w') as outputfile:
 
 # Run this continuously on an ever-growing log file	
 	
+
+# OUTPUT.csv sample output
+'''
+minute,total_count,Google Chrome Helper,Safari,com.apple.xpc.launchd,WindowServer,garcon,logrotate,run-parts,anacron,CROND,ntpd,rsyslogd,cs3,ACCT_ADD
+Dec  3 00:02,1,1,0,0,0,0,0,0,0,0,0,0,0,0
+Dec  3 00:03,6,0,2,1,2,1,0,0,0,0,0,0,0,0
+Jan 20 03:25,2,0,0,0,0,0,1,1,0,0,0,0,0,0
+Jan 20 03:26,2,0,0,0,0,0,0,0,2,0,0,0,0,0
+Jan 20 03:30,2,0,0,0,0,0,0,0,0,2,0,0,0,0
+Jan 20 05:03,1,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jan 20 05:20,1,0,0,0,0,0,0,0,0,0,0,1,0,0
+Jan 20 05:22,6,0,0,0,0,0,0,0,0,0,0,0,5,1
+'''
