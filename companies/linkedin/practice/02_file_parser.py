@@ -31,99 +31,85 @@ Dec  3 00:02,1
 Dec  3 00:03,6
 '''
 
+import re
+
+msg_per_min = {}
+pattern1 = r'^(\w+\s.?\d+ \d+:\d+).*$'
+
+with open("input.txt",'r') as input:
+	for line in input:
+		match = re.match(pattern1,line)
+		if match:
+			minute = match.group(1)
+			msg_per_min[minute] = msg_per_min.get(minute,0) + 1
+		
+#output csv
+with open("output.txt",'w') as output:
+	title = 'minute,number_of_messages\n'
+	output.write(title)
+	for min,count in msg_per_minute.items():
+		line = str(min) + ',' + str(count) + '\n'
+		output.write(line)
+		
 '''
 Extract the program name from the field between the hostname and the log message and output those values in columns.
 
 minute,number_of_messages,Google Chrome Helper,Safari,com.apple.xpc.launchd,WindowServer,garcon
 Dec  3 00:02,1,0,0,0,0
 Dec  3 00:03,0,2,1,2,1
-I think the key part of this problem is regular expression. For the first task, I used the following regular expression:
 
-^(.*? \d+ \d+\:\d+).*
-Then use re.match(regexp, line).groups() to extract minute.
-collections.Counter can count objects.
-For the second task, the regular expression is:
+# ---------- begin sample output ----------
+# minute,total_count,logrotate,run-parts,anacron,CROND,ntpd,rsyslogd,cs3,ACCT_ADD
+# Jan 20 03:25,2,1,1,0,0,0,0,0,0
+# Jan 20 03:26,2,0,0,2,0,0,0,0,0
+# Jan 20 03:30,2,0,0,0,2,0,0,0,0
+# Jan 20 05:03,1,0,0,0,0,1,0,0,0
+# Jan 20 05:20,1,0,0,0,0,0,1,0,0
+# Jan 20 05:22,6,0,0,0,0,0,0,5,1
+# ---------- end sample output ------------
+# Note: It is important that your program work with any arbitrary set of programs, not just the ones in the example output.
 
-^(.*? \d+ \d+\:\d+)\:\d+ .*? (.*?)\: .*
-The second task also has to find all programs in the log file.
 '''
 
-# https://www.mejorcodigo.com/p/109322.html
-
-#!/usr/bin/env python
-
 import re
+from collections import OrderedDict
+from ordered_set import OrderedSet
 
-msg_per_min = {}
-
-found_programs = set()
+pattern = r'^(\w+\s.?\d+ \d+:\d+):\d+ \w+ ([\.\w\s-]+).*$'
+found_programs = OrderedSet()
 output = {}
-regex = re.compile(r'^(\w+ \d+ \d+:\d+):\d+ \w+ (\w+).*$')
 
-with open("input.txt", "r") as file:
-	for line in file:
-		cols = line.split(":")
-		
-		# extract minute, number of messages per minute
-		min = str(cols[0] + ":" + cols[1])
-		msg_per_min[min] = msg_per_min.get(min,0) + 1
-		
-		# extract program name, count per minute
-		match = regex.match(line)
+with open('input.txt','r') as logfile:
+	for line in logfile:
+		match = re.match(pattern,line)
 		if match:
 			minute = match.group(1)
 			program = match.group(2)
 			found_programs.add(program)
-			if minute and program:
-				if minute in output and program in output[minute]:
-					output[minute]["total_count"] += 1
-					output[minute][program] += 1
-				elif minute in output and program not in output[minute]:
-					output[minute]["total_count"] += 1
-					output[minute][program] = 1
-				else:
-					output[minute] = dict()
-					output[minute]["total_count"] = 1
-					output[minute][program] = 1
-		
 			
-# print(msg_per_min)
-title1 = 'minute,number_of_messages'
-print(title1)
-for min,count in msg_per_min.items():
-	output1 = str(min) + ',' + str(count)
-	print(output1)
+			if minute in output and program in output[minute]:
+				output[minute]["total_count"] += 1
+				output[minute][program] += 1
+			elif minute in output and program not in output[minute]:
+				output[minute]["total_count"] += 1
+				output[minute][program] = 1
+			else:
+				output[minute] = OrderedDict()
+				output[minute]["total_count"] = 1
+				output[minute][program] = 1
 
-
-title2 = 'minute,total_count,' + ','.join(found_programs)
-print(title2)
-for min in output.keys():
-	output2 = min + "," + str(output[min]["total_count"])
-	for p in found_programs:
-		count = output[min].get(p,0)
-		output2 += ","+ str(count)
-	print(output2)
-#for k, v in output.items():
-    #print("{0} {1}".format(k, v))
-
+# output csv
+title2 = 'minute,total_count,'+','.join(found_programs)+'\n'
+with open('output.txt','w') as outputfile:
+	outputfile.write(title2)
 	
-'''
-output:
+	for min in output.keys():
+		output2 = str(min) + ',' + str(output[min]['total_count'])
+		for p in found_programs:
+			count = output[min].get(p,0)
+			output2 += ","+ str(count)
+		outputfile.write(output2)
+		outputfile.write("\n")
 
-minute,number_of_messages
-Dec  3 00:02,1
-Dec  3 00:03,6
-Jan 20 03:25,2
-Jan 20 03:26,2
-Jan 20 03:30,2
-Jan 20 05:03,1
-Jan 20 05:20,1
-Jan 20 05:22,6
-minute,total_count,cs3,CROND,rsyslogd,run,ACCT_ADD,ntpd,logrotate,anacron
-Jan 20 03:25,2,0,0,0,1,0,0,1,0
-Jan 20 03:26,2,0,0,0,0,0,0,0,2
-Jan 20 03:30,2,0,2,0,0,0,0,0,0
-Jan 20 05:03,1,0,0,0,0,0,1,0,0
-Jan 20 05:20,1,0,0,1,0,0,0,0,0
-Jan 20 05:22,6,5,0,0,0,1,0,0,0
-'''
+# Run this continuously on an ever-growing log file	
+	
