@@ -77,7 +77,7 @@ from ordered_set import OrderedSet
 
 pattern = r'^(\w+\s.?\d+ \d+:\d+):\d+ \w+ ([\.\w\s-]+).*$'
 found_programs = OrderedSet()
-output = {}
+output = OrderedDict()
 
 with open('input.txt','r') as logfile:
 	for line in logfile:
