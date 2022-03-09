@@ -12,7 +12,7 @@ def countLabels(word: str) -> int:
   fbfreq = collections.Counter("facebook")
   
   count = 1
-  for c in freq:
+  for c in wordfreq.keys():
     if wordfreq[c] > count * fbfreq[c]:
       count += 1
   return count
