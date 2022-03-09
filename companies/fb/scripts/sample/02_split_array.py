@@ -6,6 +6,10 @@ such that the sum of the two resulting arrays is the same.
 Print the resulting arrays 
 '''
 
+#####ASSUMPTION####
+# Please note that the problem specifically targets subarrays that are contiguous 
+# (i.e., occupy consecutive positions) and inherently maintains the order of elements.
+
 #####################
 # SOLUTION 1: TC: O(n2)
 '''
