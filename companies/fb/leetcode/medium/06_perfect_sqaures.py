@@ -22,54 +22,65 @@ Constraints:
 1 <= n <= 104
 '''
 
-class Solution:
-    def numSquares(self, n: int) -> int:
-        
-        # MATH : four-square theorem
-        # TC : O(n^0.5)
-        # SC : O(1)
-        
-        while( n % 4 == 0 ):
-            # Reduction by factor of 4
-            n //= 4
-            
-        if n % 8 == 7:
-            # Quick response for n = 8k + 7
-            return 4
-        
-        # Check whether n = a^2 + b^2
-        for a in range( int(sqrt(n))+1 ):
-            
-            b = int( sqrt( n - a*a ) )
-            
-            if ( a**2 + b ** 2 ) == n :
-                return (a>0) + (b>0)
-            
-        # n = a^2 + b^2 + c^2
-        return 3
-        
-############################################################################
-#### BFS
+'''
+Solution 1. According to Lagrange's four-square theorem(please wiki/google), any positive number can be represented as 4(at most) square number sum.
 
+divide by 4, notice that, 2 and 8, 3 and 12, 4 and 16 has the same number of square factors.
+if number%8==7, this result in a square factors 2^2 + 1 +1 +1, which is four.
+if any two numbers can suqare sum to n, return 1 or 2.
+otherwise result is 3.
+'''
 
-class Solution:
-    def numSquares(self, n: int) -> int:
-        
-        # BFS
-        # TC : O(n)
-        # SC : O(n)
-        
-        squares = [i**2 for i in range(1, int(n**0.5)+1)]
-        d = 1 
-        q = {n} 
-        nq = set()
-	    
-        while q:
-            for node in q:
-                for square in squares:
-                    if node == square: return d
-                    if node < square: break
-                    nq.add(node-square)
-            q, nq, d = nq, set(), d+1
-        
-        
+Solution 1. According to Lagrange's four-square theorem(please wiki/google), any positive number can be represented as 4(at most) square number sum.
+
+divide by 4, notice that, 2 and 8, 3 and 12, 4 and 16 has the same number of square factors.
+if number%8==7, this result in a square factors 2^2 + 1 +1 +1, which is four.
+if any two numbers can suqare sum to n, return 1 or 2.
+otherwise result is 3.
+
+public class Solution {
+    public int numSquares(int n) {
+        while(n%4 == 0)  n /= 4;
+        if(n%8 == 7) return 4;
+        for(int x=0; x*x <=n; x++){
+            int y = (int)Math.sqrt(n - x*x);
+            if(x*x + y*y == n){
+                if(x == 0 || y == 0) return 1;
+                else return 2;
+            }
+        }
+        return 3;
+    }
+}
+Solution 2. recusive.
+
+public class Solution {
+    public int numSquares(int n) {
+        int res = n, num =2;
+        while(num * num <=n){
+            int x = n/(num*num), y = n%(num*num);
+            res = Math.min(res, x + numSquares(y));
+            ++num;
+        }
+
+        return res;
+    }
+}
+Solution 3. DP. this is a forward dp question, using an array dp[], dp[i] means the number need to square-sum up to i, then, for all the j from 1 to i+jj <=n; calculate dp[i+jj] = ?, initially set each dp[i] equals to max.
+
+public class Solution {
+    public int numSquares(int n) {
+        int[] dp = new int[n+1];
+        for(int i=1; i<=n; i++){
+            dp[i] = Integer.MAX_VALUE;
+        }
+        dp[0]=0;
+        for(int i=0; i<=n; i++){
+            for(int j=1; i+ j*j <=n; j++){
+                dp[i+j*j] = Math.min(dp[i+j*j], dp[i]+1);
+            }
+        }
+
+        return dp[n];
+    }
+}
