@@ -34,11 +34,12 @@ Follow up: Could you solve this problem in O(n * m) where n is the length of dic
 class Solution:
     def differByOne(self, dict: List[str]) -> bool:
         # TC: O(n * m) where n is the length of dict and m is the length of each string.
+        
         d = defaultdict(int)
-   
         for i in range(len(dict)):
             for j in range(len(dict[i])):
                 d[dict[i][:j] + "*" + dict[i][j+1:]] += 1
+        
         for k, v in d.items():
             if v > 1:
                 return True
