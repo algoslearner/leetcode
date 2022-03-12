@@ -62,6 +62,7 @@ Constraints:
 At most 50000 calls will be made to showFirstUnique and add.
 '''
 
+#########################################################################################
 # Brute force: TLE
 # TC: add : O(1), showfirstUniq: O(N2)
 # SC: O(N)
@@ -86,3 +87,44 @@ class FirstUnique:
 # obj = FirstUnique(nums)
 # param_1 = obj.showFirstUnique()
 # obj.add(value)
+
+
+############################################################################################
+# using two sets
+'''
+nums_all_set: contains all the numbers that appeared so far
+nums_dup_set: contains all the numbers that appeared more than once
+idx: the first possible index for the answer in the queue
+
+Time complexity :
+constructor: O(K) (Where K = len(nums))
+add(): O(1)
+showFirstUnique(): O(1) (amortized).
+
+Space complexity : O(N)
+'''
+
+class FirstUnique:
+
+    def __init__(self, nums: List[int]):
+        self.nums_all_set = set()
+        self.nums_dup_set = set()
+        self.queue = []
+        self.idx = 0
+        
+        for num in nums:
+            self.add(num)
+        
+    def showFirstUnique(self) -> int:
+        while self.idx < len(self.queue):
+            if self.queue[self.idx] not in self.nums_dup_set:
+                return self.queue[self.idx]
+            else:
+                self.idx += 1
+        return -1
+
+    def add(self, value: int) -> None:
+        if value in self.nums_all_set:
+            self.nums_dup_set.add(value)
+        self.nums_all_set.add(value)
+        self.queue.append(value)
