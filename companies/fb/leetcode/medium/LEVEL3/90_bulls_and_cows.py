@@ -37,6 +37,9 @@ secret.length == guess.length
 secret and guess consist of digits only.
 '''
 
+# TC: O(n)
+# SC: O(1)
+
 class Solution:
     def getHint(self, secret: str, guess: str) -> str:
         
