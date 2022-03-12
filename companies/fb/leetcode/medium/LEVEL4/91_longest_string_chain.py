@@ -35,6 +35,20 @@ Constraints:
 words[i] only consists of lowercase English letters.
 '''
 
+'''
+Explanation
+Sort the words by word's length. (also can apply bucket sort)
+For each word, loop on all possible previous word with 1 letter missing.
+If we have seen this previous word, update the longest chain for the current word.
+Finally return the longest word chain.
+
+
+Complexity
+Time O(NlogN) for sorting,
+Time O(NSS) for the for loop, where the second S refers to the string generation and S <= 16.
+Space O(NS)
+'''
+
 class Solution:
     def longestStrChain(self, words: List[str]) -> int:
         dp = {}
