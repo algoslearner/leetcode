@@ -26,7 +26,7 @@ s consists of only lowercase English letters.
 class Solution:
     def longestSubstring(self, s: str, k: int) -> int:
         # brute force
-        # TC : O(n2)
+        # TC : O(n)
         # SC: O(n)
         for char, count in Counter(s).items():
             if count < k:
@@ -41,3 +41,40 @@ And check all the "substrings" one by one
 Beautiful move!
 '''
 
+# TC : O(n), since alphabets set is 26
+# SC: O(n)
+# recursive
+class Solution:
+    def longestSubstring(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        if len(s) < k:
+            return 0
+        for c in set(s):
+            if s.count(c) < k:
+                return max(self.longestSubstring(z, k) for z in s.split(c))
+        return len(s)
+
+# iterative
+class Solution:
+    def longestSubstring(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        stack = []
+        stack.append(s)
+        ans = 0
+        while stack:
+            s = stack.pop()
+            for c in set(s):
+                if s.count(c) < k:
+                    stack.extend([z for z in s.split(c)])
+                    break
+            else:
+                ans = max(ans, len(s))
+        return ans
