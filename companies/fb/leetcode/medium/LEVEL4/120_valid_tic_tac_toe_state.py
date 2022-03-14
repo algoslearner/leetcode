@@ -63,16 +63,18 @@ class Solution(object):
             if board[0][2]==s and board[1][1]==s and board[2][0]==s: return True
             return False
         
-        xNo, oNo=0, 0
+        x_count = 0
+        o_count = 0
         for row in board:
-            xNo+=row.count('X')
-            oNo+=row.count('O')
-        if oNo>xNo or xNo-oNo>=2: # "X" not making move first or not taking turns making move
+            x_count += row.count('X')
+            o_count += row.count('O')
+        if o_count > x_count or x_count - o_count >= 2: # "X" not making move first or not taking turns making move
             return False
-        if xNo>=3:
-            if xNo==oNo and win('X'): # put another "O" after "X" player winning
+        if x_count >= 3:
+            if x_count == o_count and win('X'): # put another "O" after "X" player winning
                 return False
-            if xNo!=oNo and win('O'): # put another "X" after "O" player winning
+            if x_count != o_count and win('O'): # put another "X" after "O" player winning
                 return False
         return True
+        
         
