@@ -43,6 +43,9 @@ s consists of lowercase English letters.
 Note: This question is the same as 1081: https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/
 '''
 
+# TC: O(N)
+# SC: O(1)
+
 class Solution:
     def removeDuplicateLetters(self, s) -> int:
 
