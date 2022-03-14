@@ -82,3 +82,8 @@ class Solution:
         
 		#Step - 7
         return res if res <= 2 ** 31 - 1 else -1
+
+'''
+This is the Next Permutation problem - https://leetcode.com/problems/next-permutation/
+This is the best explanation that I've seen - https://www.youtube.com/results?search_query=back+to+back+next+permutation
+'''
