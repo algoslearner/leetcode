@@ -59,6 +59,19 @@ For every ) that immediately follows a (, the answer is 1 << balance,
 as balance is the number of exterior set of parentheses that contains this core.
 '''
 
+'''
+the balance tells you what "depth" you are at since with each '(' we are increasing the depth by 1 (kind of similar to the concept in Solution 2).
+the "cores" () are the only structure that provides value, the outer parentheses just add some multiplier to the cores. So we only need to be concerned with those.
+With those 2 ideas in mind, we are able to calculate how much the "core" is worth directly without having to calculate substructures recursively and then apply multipliers.
+
+E.g. For the example of ( ( ) ( ( ) ) ), 
+with the stack method, we are calculating the inner structure ( ) ( ( ) ) first 
+and then multiplying the score by 2. 
+
+With the 3rd method, by knowing the depth of the core, 
+we are actually performing this calculation ( ( ) ) + ( ( ( ) ) ).
+'''
+
 class Solution(object):
     def scoreOfParentheses(self, S):
         ans = bal = 0
