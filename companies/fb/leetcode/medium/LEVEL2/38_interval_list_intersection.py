@@ -39,6 +39,8 @@ class Solution:
         # Space: O(N+M)
         ans = []
         i = j = 0
+        A = firstList
+        B = secondList
 
         while i < len(A) and j < len(B):
             # Let's check if A[i] intersects B[j].
