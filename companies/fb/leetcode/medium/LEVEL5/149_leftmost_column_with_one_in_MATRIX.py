@@ -44,6 +44,14 @@ mat[i] is sorted in non-decreasing order.
 # TC: O(N+M)
 # SC: O(1)
 
+# """
+# This is BinaryMatrix's API interface.
+# You should not implement it, or speculate about its implementation
+# """
+#class BinaryMatrix(object):
+#    def get(self, row: int, col: int) -> int:
+#    def dimensions(self) -> list[]:
+
 class Solution:
     def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
         
@@ -62,3 +70,4 @@ class Solution:
         
         # If we never left the last column, it must have been all 0's.
         return current_col + 1 if current_col != cols - 1 else -1
+        
