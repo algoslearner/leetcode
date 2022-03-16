@@ -43,7 +43,6 @@ Re-trying if the picked coordinates already have a mine fixes the immediate prob
 but will take a very long time for cases such as a 100x100 board with 9999 mines.
 '''
 
-
 import random
 kMine = 9
 class Matrix():
@@ -128,4 +127,3 @@ if __name__ == '__main__':
   mine_field.Print();
   mine_field.OnClick(3, 5);
   mine_field.Print();
-            
