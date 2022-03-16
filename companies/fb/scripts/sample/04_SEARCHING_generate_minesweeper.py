@@ -127,3 +127,4 @@ if __name__ == '__main__':
   mine_field.Print();
   mine_field.OnClick(3, 5);
   mine_field.Print();
+            
