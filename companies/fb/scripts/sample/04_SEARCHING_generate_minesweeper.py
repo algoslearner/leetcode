@@ -10,8 +10,4 @@ Empty squares have a number indicating the count of mines in the adjacent square
 Empty squares can have counts from zero (no adjacent mines) up to 8 (all adjacent squares are mines).
 If you were to take a complete grid, for example, you can see which squares have mines and which squares are empty:
 
-
-2. write a function that finds a ship and return its coordinates: (battleship)
-
-3. For a given set of software checkins, write a program that will determine which part along the branch where the fault lies. (solution): (first bad version)
 '''
