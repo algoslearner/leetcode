@@ -43,6 +43,7 @@ Re-trying if the picked coordinates already have a mine fixes the immediate prob
 but will take a very long time for cases such as a 100x100 board with 9999 mines.
 '''
 
+
 import random
 kMine = 9
 class Matrix():
