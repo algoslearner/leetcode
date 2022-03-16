@@ -11,101 +11,119 @@ Empty squares can have counts from zero (no adjacent mines) up to 8 (all adjacen
 If you were to take a complete grid, for example, you can see which squares have mines and which squares are empty:
 
 '''
-
-######################################################################################################
-# minesweeper (medium)
-# https://leetcode.com/problems/minesweeper/
+##############################################################################################################
+# https://techdevguide.withgoogle.com/resources/former-interview-question-minesweeper/
+# create a minesweeper class
 '''
-Given an m x n grid of characters board and a string word, return true if word exists in the grid.
+Simple class
+This question definitely points towards designing a simple class.
+Create an array with the specified number of mines at the beginning and use a random shuffle.
+If mines occupy more than half of the cells, randomize empty cells instead of mines.
 
-The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
+If for NxN you need M mines then:
+1) if M < NxN/2 then randomly pick spots and if empty place mines. At worst, the chance of picking a mine rather than empty cell is 50% so we need 2M tries.
+2) if M > NxN/2 try step 1 assuming that all cells are mined and we are trying to free up (NxN - M) spots. So in the extreme example above, it takes almost one try
 
- 
-
-Example 1:
-
-
-Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
-Output: true
-Example 2:
-
-
-Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "SEE"
-Output: true
-Example 3:
-
-
-Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"
-Output: false
- 
-
-Constraints:
-
-m == board.length
-n = board[i].length
-1 <= m, n <= 6
-1 <= word.length <= 15
-board and word consists of only lowercase and uppercase English letters.
- 
-
-Follow up: Could you use search pruning to make your solution faster with a larger board?
+What is the right way to report a problem if the requested number of mines is larger than the number of available squares?
 '''
 
-##################################
-# https://leetcode.com/problems/minesweeper/discuss/99826/Java-Solution-DFS-%2B-BFS
+##### LEARNINGS
 '''
-This is a typical Search problem, either by using DFS or BFS. Search rules:
+For the initialization, you might choose to place mines and increment neighbors in one loop, 
+or place mines and then iterate over all fields and count the mines in the neighborhood.
 
-If click on a mine ('M'), mark it as 'X', stop further search.
-If click on an empty cell ('E'), depends on how many surrounding mine:
-2.1 Has surrounding mine(s), mark it with number of surrounding mine(s), stop further search.
-2.2 No surrounding mine, mark it as 'B', continue search its 8 neighbors.
+A common error is to struggle to see the structure of the problem and make gigantic if clauses when looking at neighboring fields, 
+instead of writing a simple for loop.
+
+An important part of this question is figuring out a way to place the mines. 
+The most naive implementation is to pick two random numbers (row and column) and place a mine there, 
+but this will cause the board to have less mines than expected if the same coordinates are picked twice. 
+
+Re-trying if the picked coordinates already have a mine fixes the immediate problem, 
+but will take a very long time for cases such as a 100x100 board with 9999 mines.
 '''
 
-class Solution:
-    def updateBoard(self, board: List[List[str]], click: List[int]) -> List[List[str]]:
-        i = click[0]
-        j = click[1]
-        # found mine
-        if board[i][j] == 'M':
-            board[i][j] = 'X'
-        else:
-            self.updateOneSquare(board, i , j)
-        return board
-    
-    def updateOneSquare(self,board: List[List[str]], i: int, j: int ) -> None:
-        # check for invalid cases
-        if (i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or board[i][j] != 'E'):
-            return
-        
-        nearby_mines_num = self.findNearbyMinesNumber(board, i, j)
-        if nearby_mines_num > 0:
-            board[i][j] = str(nearby_mines_num)
-        else:
-            board[i][j] = 'B'
-            self.updateOneSquare(board, i - 1, j - 1)
-            self.updateOneSquare(board, i - 1, j)
-            self.updateOneSquare(board, i - 1, j + 1)
-            self.updateOneSquare(board, i, j - 1)
-            self.updateOneSquare(board, i, j + 1)
-            self.updateOneSquare(board, i + 1, j - 1)
-            self.updateOneSquare(board, i + 1, j)
-            self.updateOneSquare(board, i + 1, j + 1)
-            
-    def findNearbyMinesNumber(self, board: List[List[str]], i: int, j: int) -> int:
-        nearby_mines = self.hasMine(board, i - 1, j - 1) + self.hasMine(board, i - 1, j) + self.hasMine(board, i - 1, j + 1) + self.hasMine(board, i, j - 1) + self.hasMine(board, i, j + 1) + self.hasMine(board, i + 1, j - 1) + self.hasMine(board, i + 1, j) + self.hasMine(board, i + 1, j + 1)
-        return nearby_mines
-            
-    def hasMine(self, board: List[List[str]], i: int, j: int) -> int:
-        # invalid cases
-        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]):
-            return 0
-        
-        if board[i][j] == 'M':
-            return 1
-        else:
-            return 0
+import random
+kMine = 9
+class Matrix():
+  def __init__(self, T):
+    self.elem_type = T
+  def resize(self, rows, cols):
+    self.data = [self.elem_type() for _ in range(rows * cols)]
+    self.rows, self.cols = rows, cols
+  def at(self, row, col):
+    return self.data[row * self.cols + col]
+  def rows(self):
+    return self.rows
+  def cols(self):
+    return self.cols
+class MineField():
+  class Spot():
+    def __init__(self):
+      self.value = 0
+      self.visible = False
+  def _spot(self):
+    return self.Spot()
+  def __init__(self, rows, cols, num_mines):
+    self.matrix = Matrix(self._spot)
+    self.matrix.resize(rows, cols)
+    self.rows, self.cols = rows, cols
+    if num_mines > rows * cols:
+      print("Too many mines")
+    mine_list = [i < num_mines for i in range(rows * cols)]
+    random.shuffle(mine_list)
+    print(mine_list)
+    for index, is_mine in enumerate(mine_list):
+      if not is_mine:
+        continue
+      row, col = index // cols, index % cols
+      self.matrix.at(row, col).value = kMine
+      for i in range(-1, 2):
+        for j in range(-1, 2):
+          if row + i < 0 or row + i >= rows or col + j < 0 or col + j >= cols:
+            continue
+          if self.matrix.at(row + i, col + j).value == kMine:
+            continue
+          self.matrix.at(row + i, col + j).value += 1
+  def OnClick(self, row, col):
+    if row < 0 or row >= self.rows or col < 0 or col >= self.cols:
+      return False
+    spot = self.matrix.at(row, col)
+    if spot.visible:
+      return False
+    spot.visible = True
+    if spot.value == kMine:
+      print("Boom!!!!
 
-
-
-
+")
+      return True
+    if spot.value != 0:
+      return False
+    self.OnClick(row - 1, col)
+    self.OnClick(row, col - 1)
+    self.OnClick(row + 1, col)
+    self.OnClick(row, col + 1)
+    return False
+  def Print(self, show_hidden=False):
+    for i in range(self.rows):
+      for j in range(self.cols):
+        ch = '.'
+        if self.matrix.at(i, j).visible or show_hidden:
+          ch = self.matrix.at(i, j).value
+        print(ch, end=' ')
+      print()
+    print()
+    print()
+if __name__ == '__main__':
+  mine_field = MineField(12, 10, 7);
+  mine_field.Print(True);
+  mine_field.OnClick(5, 2);
+  mine_field.Print();
+  mine_field.OnClick(2, 6);
+  mine_field.Print();
+  mine_field.OnClick(9, 3);
+  mine_field.Print();
+  mine_field.OnClick(0, 0);
+  mine_field.Print();
+  mine_field.OnClick(3, 5);
+  mine_field.Print();
