@@ -111,3 +111,24 @@ class Solution(object):
         
   # TC: O(N. 3^L)
   # SC: O(L), length of a word
+
+  
+  #####################################################
+  # FB Phne screen word search variation
+  # https://leetcode.com/discuss/interview-question/344532/facebook-phone-screen-word-search
+  # So basically we need to split the sentence into multiple words and this problem becomes https://leetcode.com/problems/word-search-ii?
+  
+  '''
+  Given a 2D board and a sentence of words,
+
+[
+  ['P','D','F','A'],
+  ['Z','M','A','O'],
+  ['I','D','X','O']
+]
+
+Lets say sentence = "I AM A BOOK", return ['i', 'am', 'a'].
+Variation of Word Search/Word Search 2!
+'''
+  
+  
