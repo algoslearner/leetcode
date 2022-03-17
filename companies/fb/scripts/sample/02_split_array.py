@@ -1,9 +1,16 @@
 '''
-Given an array of integers greater than zero, f
-ind if it is possible to split it in two (without reordering the elements), 
-such that the sum of the two resulting arrays is the same. 
+Position: Production Engineer
 
-Print the resulting arrays 
+You're given an array made up of positive integers. 
+Split the given array into two smaller arrays where the sums of each smaller array are equal. 
+Print out the two smaller arrays.
+
+eg.
+[1,2,1,1,3] -> [1,2,1] & [1,3]
+[1,1,1,1,1,5] -> [1,1,1,1,1] & [5]
+[5,2,3] -> [5] & [2,3]
+
+-> had to ask for clarification: print any arbitary error message if the given array isn't splitable.
 '''
 
 #####ASSUMPTION####
@@ -80,23 +87,15 @@ if __name__ == '__main__':
         print("The list can't be partitioned")
 
       
- #########
- # Time : O(nk)
-# Space: O(n)
+######################################################################################################
+# Two pointers
+# Time : O(n)
+# Space: O(1)
 
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-        if sum(nums) % 2:
-            return False
         
-        dp = set()
-        dp.add(0)
-        target = sum(nums) // 2
+       
+     
         
-        for i in range(len(nums)):
-            nextDP = set()
-            for t in dp:
-                nextDP.add(t+nums[i])
-                nextDP.add(t)
-            dp = nextDP
-        return True if target in dp else False
+        
