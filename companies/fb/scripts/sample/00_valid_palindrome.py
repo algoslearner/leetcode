@@ -35,7 +35,7 @@ s consists only of printable ASCII characters.
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         
-        #corner case: return false if string is all space
+        #corner case: return True if string is all space
         if(s.isspace()):
             return True
         
