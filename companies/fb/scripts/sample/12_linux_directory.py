@@ -1,5 +1,10 @@
 '''
 I was asked Linux directory for the given string input 
+
+Question 1:
+A variation of https://leetcode.com/problems/simplify-path/. Given a current working directory and destination path, return the resultant path. I coded this 20 min and ran sample testcases.
+string cd (string cwd, string destination)
+e.g. /home/foo/ /x/y/.. Output: /home/foo/x/
 '''
 
 ################################################################
