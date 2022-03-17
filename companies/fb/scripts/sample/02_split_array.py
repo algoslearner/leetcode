@@ -92,10 +92,40 @@ if __name__ == '__main__':
 # Time : O(n)
 # Space: O(1)
 
-class Solution:
-    def canPartition(self, nums: List[int]) -> bool:
-        
-       
-     
-        
-        
+def printSplitArray(nums):
+	if sum(nums) % 2 != 0:
+		print("Array cannot be split into two equal subarrays")
+		return
+		
+	j = len(nums) - 1
+	leftsum = 0
+	rightsum = 0
+	found = 0
+	target = sum(nums) // 2
+	for i in range(len(nums)):
+		leftsum += nums[i]
+		
+		while leftsum > rightsum and j > 0 and j < len(nums):
+			rightsum += nums[j]
+			j -= 1
+		
+		if leftsum == rightsum == target:
+			pivot = i+1
+			print("Equal split")
+			print(nums[:pivot])
+			print(nums[pivot:len(nums)])
+			found = 1
+			break
+	
+	if found == 0:
+		print("Error: array cannot be split into same subarrays")
+
+# tests
+# nums = [1,2,1,1,3]
+# nums = [1,1,1,1,1,5]
+nums = [5,2,3]
+
+# nums = [1]
+# nums = []
+# nums = [3,4]
+printSplitArray(nums)
