@@ -1,4 +1,4 @@
-#
+# https://leetcode.com/discuss/interview-question/884347/facebook-phone-screen-returns-the-pair-words-shorter-longer
 '''
 Given a set of words return a pair with prefix and then the full word. The words will only contain english lower case letters and input words are not sorted. Return the pair of words with the small word and then the larger word, for ex - 'be' then 'bee'.
 
