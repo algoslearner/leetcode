@@ -42,3 +42,5 @@ for line in iter(sys.stdin.readline, ''):
             count = 0
     i += 1
 
+# READ VMSTAT
+# https://medium.com/@damianmyerscough/vmstat-explained-83b3e87493b3
