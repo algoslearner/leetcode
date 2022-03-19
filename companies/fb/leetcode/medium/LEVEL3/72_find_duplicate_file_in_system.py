@@ -54,9 +54,14 @@ class Solution:
             for f in files:
                 f = f.rstrip(')')
                 filename, content = f.split('(')
-                locations[content].append(root+'/'+filename)
+                locations[content].append(root +'/'+ filename)
                 
-        return [x for x in locations.values() if len(x) > 1]
+        result = []
+        for filepath in locations.values():
+            if len(filepath) > 1:
+                result.append(filepath)
+        return result
+        #return [x for x in locations.values() if len(x) > 1]
 
        
 ######################################################################################################
