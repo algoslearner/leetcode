@@ -57,3 +57,26 @@ class Solution:
                 locations[k].append(root+'/'+f)
                 
         return [x for x in locations.values() if len(x) > 1]
+
+       
+######################################################################################################
+# https://eugenejw.github.io/2017/07/leetcode-609#:~:text=I%20prefer%20DFS.-,If%20the%20file%20content%20is%20very%20large%20(GB%20level)%2C,the%20files%20byte%20by%20byte.
+'''
+Follow-up beyond contest:
+Imagine you are given a real file system, how will you search files? DFS or BFS?
+Answer: Comparing BFS and DFS, the big advantage of DFS is that it has much lower memory requirements than BFS, because it’s not necessary to store all of the child pointers at each level. Depending on the data and what you are looking for, either DFS or BFS could be advantageous. In this specific case, I prefer DFS.
+
+If the file content is very large (GB level), how will you modify your solution?
+Answer: use file size + file’s MD5. In worst case, we need to compare the files byte by byte.
+
+If you can only read the file by 1kb each time, how will you modify your solution?
+Answer: it is not an issue since majority of our files can be differentiate with size + MD5.
+
+What is the time complexity of your modified solution? What is the most time-consuming part and memory consuming part of it? How to optimize?
+Answer: O(n^2) in worst case scenario.
+
+How to make sure the duplicated files you find are not false positive?
+'''
+
+#####################################################################################################
+# https://leetcode.com/problems/find-duplicate-file-in-system/discuss/104120/follow-up-questions-discussion/106985
