@@ -71,3 +71,18 @@ dct {'wa': '1', 'sy': '3', 'b': '0', 'us': '6', 'bo': '52', 'cache': '4079320', 
 'cs': '274', 'id': '89', 'buff': '139588'}
 '''
 
+##############################################################################################################
+# https://stackoverflow.com/questions/52837267/subprocess-check-output-process-returning-the-same-output-when-run-in-loop
+
+while True:
+    output = subprocess.check_output("vmstat|tail -1", shell=True).decode('utf-8');
+    m = re.search(r"(\d+)\s+(\d+)\s+(\d+)\s+\d+\s+\d+$", output)
+    print('US', int(m.group(1)))
+    print('SY', int(m.group(2)))
+    # us: Time spent running non-kernel code. (user time, including nice time)
+    # sy: Time spent running kernel code. (system time)
+    usage=int(m.group(1))+int(m.group(2))
+    if usage>CPU:
+        ...
+    else:
+        print "cpu usage is below threshold"
