@@ -42,5 +42,32 @@ for line in iter(sys.stdin.readline, ''):
             count = 0
     i += 1
 
+##############################################################################################################
 # READ VMSTAT
 # https://medium.com/@damianmyerscough/vmstat-explained-83b3e87493b3
+
+##############################################################################################################
+# zip (parsing vmstat output)
+#The following script parses the output of the 'vmstat 1 1' command.
+
+#!/usr/bin/env python
+
+import os
+'''
+$ vmstat 1 1
+procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
+ r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
+ 1  0     36 9343440 139596 4079320    0    0   185    52  358  274  6  3 89  1  0
+'''
+lines = os.popen( 'vmstat 1 1').readlines()
+dct = dict( zip( lines[-2].split(), lines[-1].split()))
+
+print( "dct", dct)
+
+''' 
+output: 
+dct {'wa': '1', 'sy': '3', 'b': '0', 'us': '6', 'bo': '52', 'cache': '4079320', 'bi': '185', 
+'free': '9341332', 'st': '0', 'si': '0', 'r': '0', 'so': '0', 'swpd': '36', 'in': '358', 
+'cs': '274', 'id': '89', 'buff': '139588'}
+'''
+
