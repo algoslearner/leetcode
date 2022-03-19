@@ -53,8 +53,8 @@ class Solution:
             
             for f in files:
                 f = f.rstrip(')')
-                f, k = f.split('(')
-                locations[k].append(root+'/'+f)
+                filename, content = f.split('(')
+                locations[content].append(root+'/'+filename)
                 
         return [x for x in locations.values() if len(x) > 1]
 
