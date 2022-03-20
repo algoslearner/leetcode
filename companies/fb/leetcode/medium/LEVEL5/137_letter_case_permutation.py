@@ -22,15 +22,25 @@ s consists of lowercase English letters, uppercase English letters, and digits.
 '''
 
 class Solution:
-    def letterCasePermutation(self, S):
-        res = ['']
-        for ch in S:
-            if ch.isalpha():
-                res = [i+j for i in res for j in [ch.upper(), ch.lower()]]
+    def letterCasePermutation(self, S: str) -> List[str]:
+        output = [""]
+        
+        for c in S:
+            tmp = []
+            if c.isalpha():
+                for o in output:
+                    tmp.append(o + c.lower())
+                    tmp.append(o + c.upper())
             else:
-                res = [i+ch for i in res]
-        return res
+                for o in output:
+                    tmp.append(o + c)
+            output = tmp
+        
+        return output
       
       
 # Total combinations of such strings are 2^n - 
-# where n is the number of alphabet chars, because every char can be in 2 states (lower and upper). So, complexity should be O(2^n).
+# where n is the number of alphabet chars, because every char can be in 2 states (lower and upper). So, inner loop complexity should be O(2^n).
+
+# Time complexity = O(n * 2^n)
+# Space complexity = O(n)
