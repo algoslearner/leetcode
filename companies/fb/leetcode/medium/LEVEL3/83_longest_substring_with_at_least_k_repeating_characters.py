@@ -23,58 +23,31 @@ s consists of only lowercase English letters.
 1 <= k <= 105
 '''
 
+######################################################################################################################
+# check for character which does not satisy the condition
+'''
+# https://ttzztt.gitbooks.io/lc/content/string/longest-substring-with-at-least-k-repeating-characters.html
+Thoughts:
+
+1. find the smallest count character c in the array, split the string s with the character c 
+   and resursively calling the all the substring, return the max value from them
+2. or just find the first character that has count less than k and then do the split
+
+Code: T: O(n), because there are at most 26 levels of recursions.
+'''
+
+# TC: O(n)
+# SC: O(1)
+
 class Solution:
     def longestSubstring(self, s: str, k: int) -> int:
-        # brute force
-        # TC : O(n)
-        # SC: O(n)
-        for char, count in Counter(s).items():
-            if count < k:
-                return max(self.longestSubstring(s, k) for s in s.split(char))
-        return len(s)
-
-'''
-The key is to check the characters that do not satisfy the condition
-
-Taking out those characters out with split
-And check all the "substrings" one by one
-Beautiful move!
-'''
-
-# TC : O(n), since alphabets set is 26
-# SC: O(n)
-# recursive
-class Solution:
-    def longestSubstring(self, s, k):
-        """
-        :type s: str
-        :type k: int
-        :rtype: int
-        """
-        if len(s) < k:
+        # base case
+        if len(s) < k: 
             return 0
-        for c in set(s):
-            if s.count(c) < k:
-                return max(self.longestSubstring(z, k) for z in s.split(c))
-        return len(s)
+        
+        # get the char with lowest count in s
+        c = min(set(s), key = s.count) 
+        if s.count(c) >= k: 
+            return len(s)
 
-# iterative
-class Solution:
-    def longestSubstring(self, s, k):
-        """
-        :type s: str
-        :type k: int
-        :rtype: int
-        """
-        stack = []
-        stack.append(s)
-        ans = 0
-        while stack:
-            s = stack.pop()
-            for c in set(s):
-                if s.count(c) < k:
-                    stack.extend([z for z in s.split(c)])
-                    break
-            else:
-                ans = max(ans, len(s))
-        return ans
+        return max(self.longestSubstring(t, k) for t in s.split(c))
