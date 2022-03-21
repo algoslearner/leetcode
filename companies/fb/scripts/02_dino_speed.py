@@ -33,38 +33,42 @@ import math
 import re
 
 dino = {}
-bipedals = {}
+biped = {}
 g = 9.8
 
-# read the input file - 1
-with open("dataset1.csv","r") as dataset1:
+with open('dataset1.csv','r') as dataset1:
 	for line in dataset1:
-		details = line.split(",")
-		if details[0] != "NAME":
-			name = details[0]
-			dino[name] = details[1]
+		cols = line.split(',')
+		name = cols[0]
+		dino[name] = cols[1]
 
-# read the input file - 2
-with open("dataset2.csv","r") as dataset2:
-	for line2 in dataset2:
-		details2 = line2.split(",")
-		if details2[0] != "NAME" and details2[2].rstrip() == "bipedal":
-			name = details2[0]
+with open('dataset2.csv','r') as dataset2:
+	for line in dataset2:
+		col = line.split(',')
+		if col[2].rstrip() == "bipedal":
+			name = col[0]
 			if name in dino:
+				# calculate speed
+				stride_len = float(col[1])
 				leg_len = float(dino[name])
-				stride_len = float(details2[1])
-				# speed = ((STRIDE_LENGTH / LEG_LENGTH) - 1) * SQRT(LEG_LENGTH * g)
-				s = ((stride_len / leg_len) - 1) * (math.sqrt(leg_len * g))
-				s = round(s,4)
-				bipedals[name] = s
+				speed = ((stride_len / leg_len) - 1) * math.sqrt(leg_len * g)
+				biped[name] = speed
+				
 			else:
-				# print("New bipedal dinosaur: "+name)
-				continue
+				print("new bipedal dino : " + name)
+				
+				
+# sort from fasted to slowest
+for n in reversed(sorted(biped, key = biped.get)):
+	print(n)
 	
-
-# print the names of only the bipedal dinosaurs from fastest to slowest	
-print(bipedals)	
-sorted_keys = reversed(sorted(bipedals, key=bipedals.get))
-for name in sorted_keys:
-	print(name)
+######################################################################################
+# output
+'''
+new bipedal dino : Deinonychus
+new bipedal dino : Velociraptorr
+Struthiomimus
+Hadrosaurus
+Tyrannosaurus Rex
+'''
 
