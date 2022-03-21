@@ -51,3 +51,19 @@ class Solution:
             return len(s)
 
         return max(self.longestSubstring(t, k) for t in s.split(c))
+
+       
+################################################################################
+# same logic with counter
+
+def longestSubstring(self, s, k):
+        # base case
+        if len(s) < k:
+            return 0
+   
+        # least freq char and count
+        char,count = Counter(s).most_common()[-1]
+        if count >= k:
+            return len(s)
+       
+        return max(self.longestSubstring(z,k) for z in s.split(char))
