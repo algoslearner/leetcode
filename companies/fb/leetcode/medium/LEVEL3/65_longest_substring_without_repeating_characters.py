@@ -27,6 +27,9 @@ Constraints:
 s consists of English letters, digits, symbols and spaces.
 '''
 
+# TC: O(n)
+# SC: O(n), hashmap
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         # abcbacbb
