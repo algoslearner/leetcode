@@ -32,10 +32,10 @@ class Solution:
     def findKthPositive(self, arr: List[int], k: int) -> int:
         start = 0
         for n in arr:
-            missing_numbers = n - start - 1
-            if k <= missing_numbers:
-                return start+k
-            k -= missing_numbers
+            diff = n - start - 1
+            if k <= diff:
+                return start + k
+            k -= diff
             start = n
         return arr[-1]+k
 
