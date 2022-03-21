@@ -50,3 +50,35 @@ class Solution:
         
         dif = [(a, b) for a, b in zip(s, goal) if a != b]
         return len(dif) == 2 and dif[0] == dif[1][::-1]
+
+       
+ #################################################################################
+ '''
+ I solved it following way.
+#1 - if both strings length not matching, return false
+#2 - if both strings are equal, but have any character repeating more than once, its swappable so return true
+#3 - if more than 2 diffs, it won't match by swapping twice, so return false
+#4 - When the diff is exactly two, for it to be swappable, the sorted values of both diffs should match up and return true, else false.
+'''
+ 
+ class Solution:
+    def buddyStrings(self, s: str, goal: str) -> bool:
+        
+        if len(s) != len(goal): 
+            return False
+        
+        if s == goal:
+            seen = set()
+            for a in s:
+                if a in seen:
+                    return True
+                seen.add(a)
+            return False
+
+        pairs = []
+        for a, b in zip(s, goal):
+            if a != b:
+                pairs.append((a, b))
+            if len(pairs) >= 3: 
+                return False
+        return len(pairs) == 2 and pairs[0] == pairs[1][::-1]
