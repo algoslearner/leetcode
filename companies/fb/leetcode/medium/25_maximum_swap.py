@@ -38,11 +38,13 @@ class Solution:
             if digits[i] > digits[max_i]:
                 max_i = i
             elif digits[i] < digits[max_i]:
-                p, q = i, max_i
+                p = i
+                q = max_i
 
         # swap
         if p > -1:
             digits[p], digits[q] = digits[q], digits[p]
             
         return int(''.join(digits))
+                
                 
