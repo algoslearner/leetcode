@@ -26,30 +26,30 @@ Function 0 is running again at time 6, and also end at the time 6, thus executes
 So function 0 totally execute 2 + 1 = 3 units of time, and function 1 totally execute 4 units of time.
 '''
 
+###############################################################################################
 # STACK
 # Time : O(n)
 # Space : O(n)
 
 class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
-        ftimes = [0] * n
+        output = [0] * n
+        
         stack = []
-        prev_start_time = 0
-        
         for log in logs:
-            fid, indicator, ftime = log.split(":")
-            fid, ftime = int(fid), int(ftime)
+            cols = log.split(':')
+            fn_id = int(cols[0])
+            timestamp = int(cols[2])
             
-            if indicator == 'start':
-                if stack:
-                    ftimes[stack[-1]] += ftime - prev_start_time
-                    
-                stack.append(fid)
-                prev_start_time = ftime
-                
+            if cols[1] == 'start':
+                stack.append((fn_id,timestamp))
             else:
-                ftimes[stack.pop()] += ftime - prev_start_time + 1
-                prev_start_time = ftime + 1
+                curr_id, curr_start = stack.pop()
+                curr_fn_time = timestamp - curr_start + 1
+                output[curr_id] += curr_fn_time
                 
-        return ftimes
+                if len(stack) != 0:
+                    prev_fn_id = stack[-1][0]
+                    output[prev_fn_id] -= curr_fn_time
         
+        return output
