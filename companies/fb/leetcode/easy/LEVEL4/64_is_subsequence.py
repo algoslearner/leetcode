@@ -29,3 +29,13 @@ Follow up: Suppose there are lots of incoming s, say s1, s2, ..., sk where k >= 
 and you want to check one by one to see if t has its subsequence. 
 In this scenario, how would you change your code?
 '''
+
+def isValidSubsequence(array, sequence):
+    seq_index = 0
+	
+	for i in range(len(array)):
+		if seq_index == len(sequence):
+			break
+		if array[i] == sequence[seq_index]:
+			seq_index += 1
+	return len(sequence) == seq_index
