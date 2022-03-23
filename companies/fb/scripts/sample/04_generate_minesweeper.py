@@ -1,5 +1,11 @@
 '''
-Searching algorithms
+Implement data structure to generate minesweeper grid gen(L,W,M), where L=2, w=3 and mines= 3
+x,.,.
+.,x,x
+'''
+
+'''
+IDEA: Searching algorithms
  1. (*high frequency question) Generate a minesweeper grid (2x3) with 3 randomly-placed mines (solution)
 
 Implement Minesweeper
@@ -10,10 +16,5 @@ Empty squares have a number indicating the count of mines in the adjacent square
 Empty squares can have counts from zero (no adjacent mines) up to 8 (all adjacent squares are mines).
 If you were to take a complete grid, for example, you can see which squares have mines and which squares are empty:
 
-'''
-'''
-Generate minesweeper grid gen(L,W,M), where L=2, w=3 and mines= 3
-x,.,.
-.,x,x
 '''
 
