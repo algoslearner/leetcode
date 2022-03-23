@@ -52,7 +52,7 @@ count = int(inputs[2])
 fileParser(filename,count)
 
 ###########################################
-# OUPUT
+# OUTPUT
 '''
 >python countwords.py countwords_info.txt 13
 and     7
