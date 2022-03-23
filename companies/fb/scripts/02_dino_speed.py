@@ -59,8 +59,12 @@ with open('dataset2.csv','r') as dataset2:
 				
 				
 # sort from fasted to slowest
-for n in reversed(sorted(biped, key = biped.get)):
-	print(n)
+#for n in sorted(biped, key =biped.get, reverse=True):
+	#print(n)
+
+for name, speed in sorted(biped.items(), key =lambda x:x[1], reverse=True):
+	print(name)
+
 	
 ######################################################################################
 # output
