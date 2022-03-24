@@ -55,7 +55,7 @@ if __name__ == "__main__":
 # TEST
 #filename = 'countwords_info.txt'
 #count = 13
-# OUPUT
+# OUTPUT
 '''
 >python countwords.py countwords_info.txt 13
 and     7
