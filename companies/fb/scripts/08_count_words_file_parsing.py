@@ -40,19 +40,22 @@ def fileParser(filename:str, count:int):
 			count -= 1
 		else:
 			break
+
+def main():
+	# read inputs from command line
+	inputs = list(sys.argv)
+	filename = inputs[1]
+	count = int(inputs[2])
+	fileParser(filename,count)
 	
+if __name__ == "__main__":
+	main()
+
+###########################################	
 # TEST
 #filename = 'countwords_info.txt'
-#count = 15
-
-# read inputs from command line
-inputs = list(sys.argv)
-filename = inputs[1]
-count = int(inputs[2])
-fileParser(filename,count)
-
-###########################################
-# OUTPUT
+#count = 13
+# OUPUT
 '''
 >python countwords.py countwords_info.txt 13
 and     7
