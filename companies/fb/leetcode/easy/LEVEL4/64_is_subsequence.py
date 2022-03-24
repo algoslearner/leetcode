@@ -31,7 +31,7 @@ In this scenario, how would you change your code?
 '''
 
 def isValidSubsequence(array, sequence):
-    seq_index = 0
+	seq_index = 0
 	
 	for i in range(len(array)):
 		if seq_index == len(sequence):
