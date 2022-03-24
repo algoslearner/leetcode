@@ -23,7 +23,7 @@ book	105
 import sys
 from collections import Counter
 
-def fileParser(filename:str, count:int):
+def file_parser(filename:str, count:int):
 	wordsfreq = {}
 	with open(filename, 'r') as file:
 		for line in file:
@@ -46,18 +46,18 @@ def main():
 	inputs = list(sys.argv)
 	filename = inputs[1]
 	count = int(inputs[2])
-	fileParser(filename,count)
+	file_parser(filename,count)
 	
 if __name__ == "__main__":
 	main()
 
 ###########################################	
 # TEST
-#filename = 'countwords_info.txt'
-#count = 13
+# filename = 'countwords_info.txt'
+# count = 15
 # OUTPUT
 '''
->python countwords.py countwords_info.txt 13
+>python countwords.py countwords_info.txt 15
 and     7
 of      2
 in      2
@@ -65,6 +65,8 @@ like    2
 The     1
 true    1
 power   1
+Production      1
+Engineering     1
 comes   1
 from    1
 developing      1
