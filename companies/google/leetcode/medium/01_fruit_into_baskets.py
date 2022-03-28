@@ -42,31 +42,26 @@ Constraints:
 
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        
+        # corner case: small array
         n = len(fruits)
         if n < 3:
             return n
         
-        # sliding window left and right pointers
-        left, right = 0, 0
-        # hashmap character -> its rightmost position in the sliding window
-        hashmap = defaultdict()
-
-        max_len = 2
-
-        while right < len(fruits):
-            # when the slidewindow contains less than 3 characters
+        # sliding window
+        left = 0
+        right = 0
+        maxlen = 2
+        hashmap = {}
+        
+        while right < n:
             hashmap[fruits[right]] = right
             right += 1
-
-            # slidewindow contains 3 characters
+            
             if len(hashmap) == 3:
-                # delete the leftmost character
-                del_idx = min(hashmap.values())
-                del hashmap[fruits[del_idx]]
-                # move left pointer of the slidewindow
-                left = del_idx + 1
-
-            max_len = max(max_len, right - left)
-
-        return max_len
+                minindex = min(hashmap.values())
+                del hashmap[fruits[minindex]]
+                
+                left = minindex + 1
+            
+            maxlen = max(maxlen, right-left)
+        return maxlen
