@@ -44,17 +44,7 @@ class Solution:
     def numUniqueEmails(self, emails: List[str]) -> int:
         unique_emails = set()
         for email in emails:
-            local,domain = email.split('@')
-            
-            # Split local by '+' and replace all '.' with ''.
-            # local = name.split('+')[0].replace('.', '')
-            newlocal = []
-            for c in local:
-                if c == '+':
-                    break
-                elif c != '.':
-                    newlocal.append(c)
-            local = ''.join(newlocal)
-            
+            local, domain = email.split('@')
+            local = local.split('+')[0].replace('.','')
             unique_emails.add(local + "@" + domain)
         return len(unique_emails)
