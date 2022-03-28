@@ -48,3 +48,23 @@ class Solution:
             local = local.split('+')[0].replace('.','')
             unique_emails.add(local + "@" + domain)
         return len(unique_emails)
+
+       
+############################################################################
+class Solution:
+	def num_unique_emails(self, emails):
+		hashtable = []
+		for email in emails:
+			local,domain = email.split('@')
+			newlocal = []
+			for c in local:
+				if c == '+':
+					break
+				elif c != '.':
+					newlocal.append(c)
+			local = ''.join(newlocal)
+			address = local + "@" + domain
+			if address not in hashtable:
+				hashtable.append(address)
+		return len(hashtable)
+		
