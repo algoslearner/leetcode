@@ -50,7 +50,6 @@ class Solution:
         return len(unique_emails)
 
        
-################################################################
 class Solution:
 	def num_unique_emails(self, emails):
 		hashtable = []
@@ -67,5 +66,6 @@ class Solution:
 			if address not in hashtable:
 				hashtable.append(address)
 		return len(hashtable)
+		
 		
 	
