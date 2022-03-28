@@ -37,6 +37,7 @@ Local names do not start with a '+' character.
 Domain names end with the ".com" suffix.
 '''
 
+#########################################################################################
 # Time Complexity : O(N.k)
 # Space Complexity: O(N)
 
@@ -49,7 +50,7 @@ class Solution:
             unique_emails.add(local + "@" + domain)
         return len(unique_emails)
 
-       
+#########################################################################################     
 class Solution:
 	def num_unique_emails(self, emails):
 		hashtable = []
@@ -66,6 +67,3 @@ class Solution:
 			if address not in hashtable:
 				hashtable.append(address)
 		return len(hashtable)
-		
-		
-	
