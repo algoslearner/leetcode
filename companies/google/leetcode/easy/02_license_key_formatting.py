@@ -36,12 +36,10 @@ class Solution:
     def licenseKeyFormatting(self, s: str, k: int) -> str:
         output = []
         for i in range(len(s)-1,-1,-1):
-            if s[i] == "-":
+            if s[i] == '-':
                 continue
-            
             if len(output) % (k+1) == k:
                 output.append("-")
-                
             output.append(s[i].upper())
         
         return "".join(reversed(output))
