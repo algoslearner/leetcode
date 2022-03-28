@@ -28,10 +28,12 @@ n == height.length
 0 <= height[i] <= 104
 '''
 
+#################################################################################################
+# BRUTE FORCE
+# TC: O(n2), SC: O(1)
+
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        # BRUTE FORCE, TC: O(n2), SC: O(1)
-        '''
         maxarea = 0
         for i in range(len(height)):
             for j in range(i+1,len(height)):
@@ -39,9 +41,14 @@ class Solution:
                 base = j - i
                 maxarea = max(maxarea, h * base)
         return maxarea
-        '''
-        
-        # two pointers, TC: O(n), SC: O(1)
+       
+
+#################################################################################################
+# TWO POINTERS
+# TC: O(n), SC: O(1)
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
         maxarea = 0
         l = 0
         r = len(height) - 1
