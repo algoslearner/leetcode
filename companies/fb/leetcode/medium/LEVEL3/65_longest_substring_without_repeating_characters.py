@@ -32,20 +32,15 @@ s consists of English letters, digits, symbols and spaces.
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        # abcbacbb
-        # start
-        
         start = 0
         maxlen = 0
         hashmap = {}
         
         for i,c in enumerate(s):
             if c in hashmap and start <= hashmap[c]:
-                # repeating char, then slide "start" by 1
                 start = hashmap[c] + 1
             else:
-                maxlen = max(maxlen, i-start+1)
+                maxlen = max(maxlen, i - start + 1)
             hashmap[c] = i
-            
         return maxlen
-        
+                
