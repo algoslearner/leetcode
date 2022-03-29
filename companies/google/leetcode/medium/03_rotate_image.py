@@ -45,7 +45,7 @@ class Solution:
 
           
 ####################################################################################
-# transpose + reverse
+# rotate = transpose + reversed
 # TC: O(M)
 # SC: O(1)
 
