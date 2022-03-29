@@ -41,4 +41,4 @@ class Solution:
                 output = chr(ord('0') + c) + output
             return output
         
-        return encode(decode(num1)*decode(num2))
+        return encode(decode(num1) * decode(num2))
