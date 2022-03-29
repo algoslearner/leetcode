@@ -27,18 +27,18 @@ class Solution:
         if num1 == '0' or num2 == '0':
             return '0'
         
-        def decode(num):
-            ans = 0
-            for i in num:
-                ans = ans*10 +(ord(i) - ord('0'))
-            return ans
+        def decode(s):
+            val = 0
+            for digit in s:
+                val = val*10 + (ord(digit) - ord('0'))
+            return val
 
-        def encode(s):
-            news = ''
-            while s:
-                a = s % 10
-                s = s // 10
-                news = chr(ord('0') + a) + news
-            return news
+        def encode(num):
+            output = ''
+            while num:
+                c = num % 10
+                num = num // 10
+                output = chr(ord('0') + c) + output
+            return output
         
         return encode(decode(num1)*decode(num2))
