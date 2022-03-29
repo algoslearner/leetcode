@@ -22,6 +22,10 @@ num1 and num2 consist of digits only.
 Both num1 and num2 do not contain any leading zero, except the number 0 itself.
 '''
 
+##################################################################################
+# TC: O(n)
+# SC: O(1)
+
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
         if num1 == '0' or num2 == '0':
@@ -29,16 +33,16 @@ class Solution:
         
         def decode(s):
             val = 0
-            for digit in s:
-                val = val*10 + (ord(digit) - ord('0'))
+            for c in s:
+                val = val * 10 + (ord(c) - ord('0'))
             return val
-
-        def encode(num):
-            output = ''
-            while num:
-                c = num % 10
-                num = num // 10
-                output = chr(ord('0') + c) + output
-            return output
         
+        def encode(num):
+            output = ""
+            while num:
+                digit = num % 10
+                num = num // 10
+                output = chr(ord('0') + digit) + output
+            return output
+            
         return encode(decode(num1) * decode(num2))
