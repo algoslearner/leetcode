@@ -46,7 +46,8 @@ class Solution:
         if not root:
             return True
         
-        l, r = self.checkUni(root.left), self.checkUni(root.right)
+        l = self.checkUni(root.left)
+        r = self.checkUni(root.right)
         if l and r and (not root.left or root.left.val == root.val) \
         and (not root.right or root.right.val == root.val):
             self.count += 1
