@@ -57,19 +57,23 @@ class Solution:
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         output = []
-        stack = [(root, False)]
+        stack = [root]
+        
         while stack:
-            node, visited = stack.pop()
-            if node:
-                if visited:
-                    # add to result if visited
-                    output.append(node.val)
-                else:
-                    # post-order
-                    stack.append((node, True))
-                    stack.append((node.right, False))
-                    stack.append((node.left, False))
-
-        return output
+            root = stack.pop()
+            if root:
+                output.append(root.val)
+                stack.append(root.left)
+                stack.append(root.right)
+        
+        return output[::-1]
       
 ################################################################################################
+# EASIER RECURSION
+
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        if root:
+            return self.postorderTraversal(root.left) + self.postorderTraversal(root.right) + [root.val]
+        else:
+            return []
