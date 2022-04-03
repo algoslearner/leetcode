@@ -35,7 +35,7 @@ inorder is guaranteed to be the inorder traversal of the tree.
 #         self.left = left
 #         self.right = right
 ################################################################################################
-# TC: O(N)
+# TC: O(N^2), preorder.pop(0) will cost you n and for n times its n^2.
 # SC: O(N)
 
 class Solution:
@@ -50,3 +50,22 @@ class Solution:
             return root
             
         return helper()        
+
+################################################################################################
+# TC: O(N), improved with dequeue
+# SC: O(N)
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        preorder=deque(preorder)
+        inorder=deque(inorder)
+        
+        def helper(bound=None):
+            if not inorder or inorder[0] == bound: return None
+            root = TreeNode(preorder.popleft())
+            root.left = helper(root.val)
+            inorder.popleft()
+            root.right = helper(bound)
+            return root
+        
+        return helper()
