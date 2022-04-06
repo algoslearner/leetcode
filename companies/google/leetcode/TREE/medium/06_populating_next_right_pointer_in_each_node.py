@@ -83,9 +83,26 @@ class Solution:
                 queue.append(curr.left)
                 queue.append(curr.right)
         return root
-      
 ###############################################################################################
-# Using next pointers
+# DFS using stack
+# TC: O(N)
+# SC: O(N)
+
+def connect(self, root):
+    if not root:
+        return 
+    stack = [root]
+    while stack:
+        curr = stack.pop()
+        if curr.left and curr.right:
+            curr.left.next = curr.right
+            if curr.next:
+                curr.right.next = curr.next.left
+            stack.append(curr.right)
+            stack.append(curr.left)
+            
+###############################################################################################
+# Using next pointers, from solutions
 # TC: O(N)
 # SC: O(1)
 
