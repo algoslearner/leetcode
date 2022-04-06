@@ -47,33 +47,7 @@ class Node:
         self.right = right
         self.next = next
 """
-###############################################################################################
-# QUEUE
-# TC: O(N)
-# SC: O(N)
-
-class Solution:
-    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
-        if not root:
-            return root
-        
-        q = deque([root])
-        while q:
-            size = len(q)
-            for i in range(size):
-                node = q.popleft()
-                
-                # check next pointers are within a level
-                if i < size - 1:
-                    node.next = q[0]
-                    
-                # add children to back of the queue
-                if node.left:
-                    q.append(node.left)
-                if node.right:
-                    q.append(node.right)
-                    
-        return root
+      
 ###############################################################################################
 # RECURSION
 # TC: O(N)
@@ -89,6 +63,27 @@ class Solution:
             self.connect(root.right)
         return root
 
+###############################################################################################
+# BFS using QUEUE
+# TC: O(N)
+# SC: O(N)
+
+class Solution:
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        if not root:
+            return 
+        
+        queue = [root]
+        while queue:
+            curr = queue.pop(0)
+            if curr.left and curr.right:
+                curr.left.next = curr.right
+                if curr.next:
+                    curr.right.next = curr.next.left
+                queue.append(curr.left)
+                queue.append(curr.right)
+        return root
+      
 ###############################################################################################
 # Using next pointers
 # TC: O(N)
