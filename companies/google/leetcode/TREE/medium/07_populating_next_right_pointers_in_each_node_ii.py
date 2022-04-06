@@ -36,3 +36,88 @@ Follow-up:
 You may only use constant extra space.
 The recursive approach is fine. You may assume implicit stack space does not count as extra space for this problem.
 '''
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val: int = 0, left: 'Node' = None, right: 'Node' = None, next: 'Node' = None):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+#########################################################################################
+# QUEUE
+# TC: O(N)
+# SC : O(N)
+
+class Solution:
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        if not root:
+            return root
+        
+        q = deque([root])
+        while q:
+            size = len(q)
+            
+            # iterate over all nodes on current level
+            for i in range(size):
+                node = q.popleft()
+                
+                # check if next pointers are on same level
+                if i < size - 1:
+                    node.next = q[0]
+                    
+                # add the children to back of the queue
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+        return root
+      
+#########################################################################################
+# USE NEXT POINTERS
+# TC: O(N)
+# SC : O(1)
+
+# pseudocode
+'''
+leftmost = root
+ while (leftmost != null)
+ {
+     curr = leftmost
+     prev = NULL
+     while (curr != null)
+     {
+         → process left child
+         → process right child
+         → set leftmost for the next level
+         curr = curr.next
+     }
+ }
+ '''
+
+class Solution:
+    
+    def processChild(self, childNode, prev, leftmost):
+        if childNode:
+            if prev:
+                prev.next = childNode
+            else:    
+                leftmost = childNode
+            prev = childNode 
+        return prev, leftmost
+    
+    def connect(self, root: Optional['Node']) -> Optional['Node']:
+        if not root:
+            return root
+        
+        leftmost = root
+        while leftmost:
+            prev, curr = None, leftmost
+            leftmost = None
+            while curr:
+                prev, leftmost = self.processChild(curr.left, prev, leftmost)
+                prev, leftmost = self.processChild(curr.right, prev, leftmost)
+                curr = curr.next
+        return root 
