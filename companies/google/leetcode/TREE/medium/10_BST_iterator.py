@@ -44,15 +44,16 @@ Follow up:
 Could you implement next() and hasNext() to run in average O(1) time and use O(h) memory, where h is the height of the tree?
 '''
 
-# TC: O(N) iterator, next() and hasNext() to run in average O(1) time
-# Space: O(h)
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
+##############################################################################################
+# TC: O(N) iterator, next() and hasNext() to run in average O(1) time
+# SC: O(h)
+
 class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
