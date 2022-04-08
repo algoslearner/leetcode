@@ -33,7 +33,7 @@ Constraints:
 At most 104 calls will be made to add.
 It is guaranteed that there will be at least k elements in the array when you search for the kth element.
 '''
-# use BST?
+
 ###############################################################################################################
 # HEAP
 # TC : N log N + M log k, Given NN as the length of nums and MM as the number of calls to add()
@@ -60,3 +60,8 @@ class KthLargest:
 # Your KthLargest object will be instantiated and called as such:
 # obj = KthLargest(k, nums)
 # param_1 = obj.add(val)
+
+###############################################################################################################
+# BST height-balanced?
+# TC : O(log N)
+# SC : O(h)
