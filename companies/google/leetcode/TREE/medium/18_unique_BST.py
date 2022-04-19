@@ -18,7 +18,27 @@ Constraints:
 
 1 <= n <= 19
 '''
+# https://leetcode.com/problems/unique-binary-search-trees/discuss/1565543/C%2B%2BPython-5-Easy-Solutions-w-Explanation-or-Optimization-from-Brute-Force-to-DP-to-Catalan-O(N)
+######################################################################################
+# Recursion
+# TC: O(N^2)
+# SC: O(N)
 
+class Solution:
+    @cache
+    def numTrees(self, n: int) -> int:
+        if n <= 1: return 1
+        return sum(self.numTrees(i-1) * self.numTrees(n-i) for i in range(1, n+1))
+
+######################################################################################
+# math
+# TC: O(N)
+# SC: O(1)
+
+class Solution:
+    def numTrees(self, n: int) -> int:
+        return factorial(2*n) // (factorial(n)*factorial(n+1))
+   
 ######################################################################################
 # DP
 # TC: O(N^2)
@@ -34,9 +54,7 @@ class Solution:
                 G[i] += G[j-1] * G[i-j]
 
         return G[n]
-      
-      
-      
+          
 ######################################################################################
 # Math deduction
 # TC: O(N)
