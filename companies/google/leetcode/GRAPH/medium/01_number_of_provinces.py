@@ -46,12 +46,11 @@ isConnected[i][j] == isConnected[j][i]
 
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
-        A = isConnected
-        N = len(A)
+        N = len(isConnected)
         seen = set()
         
         def dfs(node):
-            for nei, adj in enumerate(A[node]):
+            for nei, adj in enumerate(isConnected[node]):
                 if adj and nei not in seen:
                     seen.add(nei)
                     dfs(nei)
