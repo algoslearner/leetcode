@@ -1,5 +1,6 @@
 '''
 1168. Optimize Water Distribution in a Village
+Google 2, Fb 2
 
 There are n houses in a village. We want to supply water for all the houses by building wells and laying pipes.
 
