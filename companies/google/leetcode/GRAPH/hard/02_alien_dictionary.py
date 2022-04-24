@@ -31,6 +31,7 @@ Constraints:
 words[i] consists of only lowercase English letters.
 '''
 # https://leetcode.com/problems/alien-dictionary/discuss/1564871/Python3-or-Topological-Sort-or-99.95-faster
+# Also Refer: https://medium.com/@timothyhuang514/graph-alien-dictionary-d2b104c36d8e
 
 class Solution:
     def alienOrder(self, words: List[str]) -> str:
