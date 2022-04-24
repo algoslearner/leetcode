@@ -1,6 +1,10 @@
 # https://leetcode.com/discuss/interview-question/1952215/Amazon-or-OA
+# https://leetcode.com/discuss/interview-question/1761729/Amazon-New-Grad-or-OA-or-Pascal-Triangle-Decryption
 
+###################################################################################################################
 # https://www.chegg.com/homework-help/questions-and-answers/order-ensure-maximum-security-developers-xyz-employ-multiple-encryption-methods-keep-user--q95120166
+###################################################################################################################
+
 '''
 In order to ensure maximum security, the developers at xyz employ multiple encryption methods to keep user data protected.
 In one method, numbers are encrypted using a scheme called 'Pascal Triangle". When an array of digits is fed to this system, it sums the adjacent digits. It then takes the rightmost digit (least significant digit) of each luge is repeated addition for the next step. Thus, the number of digits in each step is reduced by 1. This procedige until there are only 2 digits left, and this sequence of 2 digits forms the encrypted number.
@@ -28,8 +32,42 @@ Explanation
 The encryption occurs as follows: [4, 5, 6, 7] -> [9, 1, 3] -> [0, 4].
 '''
 
+'''
+# https://leetcode.com/discuss/interview-question/1761729/Amazon-New-Grad-or-OA-or-Pascal-Triangle-Decryption
+Given an array of integers, we sum neighbouring elements like pascal's triangle until only two integers remain and take those to be the output. 
+During the process, if the sum of two elements is greater than or equal to 10, 
+we only take the digit place to the next level. Sorry if the description isn't clear enough, I included a picture to demonstrate the idea.
+'''
+
+###################################################################################################################
+# SOLUTION: 
+# run a while loop with condition that the list is greater than 2 elements. 
+# At each step, traverse through the list adding adjacent numbers together and replacing the left one with the sum. 
+# Then once you finish, delete the last element in the list.
+
+# TC: O(N^2)
+
+def invertedTriangle(self,arr):
+        len_ = len(arr)
+        if len_ < 3:
+            return arr
+        cnt = 1
+        while arr:
+            if cnt == len_:
+                len_-= 1
+                cnt = 1
+                arr.pop(0)
+            if len_ == 2:
+                return arr
+            sum_ = (arr.pop(0) + arr[0])%10
+            arr.append(sum_)
+            cnt+=1
+            
+###################################################################################################################
 # https://www.chegg.com/homework-help/questions-and-answers/taking-change-temperature-data-n-days-aggregate-temperature-change-evaluated-ith-day-maxim-q92661318
 # Please look at this link for question screenshots
+###################################################################################################################
+
 '''
 Taking the change in temperature data of n days, 
 the aggregate temperature change evaluated on the ith day 
