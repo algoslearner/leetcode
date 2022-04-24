@@ -45,8 +45,8 @@ we only take the digit place to the next level. Sorry if the description isn't c
 # At each step, traverse through the list adding adjacent numbers together and replacing the left one with the sum. 
 # Then once you finish, delete the last element in the list.
 
+#############################
 # TC: O(N^2)
-
 def invertedTriangle(self,arr):
         len_ = len(arr)
         if len_ < 3:
@@ -62,7 +62,25 @@ def invertedTriangle(self,arr):
             sum_ = (arr.pop(0) + arr[0])%10
             arr.append(sum_)
             cnt+=1
-            
+
+############################
+# BRUTE FORCE
+def invertedTriangle(arr):
+  n = len(arr)
+  if n < 3:
+      return arr
+  a2 = []
+  while n != 2:
+    for i in range(0, n-1):
+      d = arr[i] + arr[i+1]
+      d = d % 10
+      a2.append(d)
+    arr = a2
+    n = len(arr)
+    a2 = []
+  # return arr as a string
+  return ' '.join(str(i) for i in arr)
+
 ###################################################################################################################
 # https://www.chegg.com/homework-help/questions-and-answers/taking-change-temperature-data-n-days-aggregate-temperature-change-evaluated-ith-day-maxim-q92661318
 # Please look at this link for question screenshots
