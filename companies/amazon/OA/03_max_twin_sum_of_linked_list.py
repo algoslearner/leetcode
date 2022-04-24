@@ -44,7 +44,6 @@ The number of nodes in the list is an even integer in the range [2, 105].
 1 <= Node.val <= 105
 '''
 
-class Solution:
 	"""
 	You're guaranteed that the linked list will be even. If you try out some
 	values for n, you'll see that at n = 0, the twin sum will be the last node..
@@ -53,10 +52,12 @@ class Solution:
 	From there you can extract that you need to get the middle and reverse the first half.
 	Once you do that, you can just traverse as normal from the middle node and the reverse start.
 	"""
+	# get middle and reverse first half
+	# you could do two separate operations to get mid then reverse the first half until you reach the mid.
+	# but that would be expensive since you'd traverse the first half twice so it's better to do it all in one go.
+
+class Solution:
     def pairSum(self, head: Optional[ListNode]) -> int:
-        # get middle and reverse first half
-		# you could do two separate operations to get mid then reverse the first half until you reach the mid.
-		# but that would be expensive since you'd traverse the first half twice so it's better to do it all in one go.
         prev, slow, fast = None, head, head
         
         while fast and fast.next: # Setup for get mid logic
