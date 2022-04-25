@@ -90,3 +90,16 @@ class Solution:
             return node
         return convert(0, size - 1)
         
+###################################################################################
+# Algorithm
+# Let's quickly look at a pseudo-code to make the algorithm simple to understand.
+
+#➔ function formBst(start, end)
+#➔      mid = (start + end) / 2
+#➔      formBst(start, mid - 1)
+#➔
+#➔      TreeNode(head.val)
+#➔      head = head.next
+#➔       
+#➔      formBst(mid + 1, end)
+#➔
