@@ -13,3 +13,6 @@ Sample Output :
 3
 This question can be solved by using BFS or DFS.
 '''
+
+# https://leetcode.com/discuss/interview-question/1257344/Amazon-OA-or-Demolition-of-Robot
+# question screenshots
