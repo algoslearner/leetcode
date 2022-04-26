@@ -31,6 +31,28 @@ The number of nodes in the tree is in the range [0, 2000].
 
 Follow up: Can you flatten the tree in-place (with O(1) extra space)?
 '''
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def flatten(self, root: TreeNode) -> None:
+        """
+        Do not return anything, modify root in-place instead.
+        """
+        
+        self.previous_right = None
+        def helper(root = root):
+            if root:
+                helper(root.right)
+                helper(root.left)
+                root.right, self.previous_right = self.previous_right, root
+                root.left = None
+        helper()
+        
 
 ###########################################################################################################
 # RECURSION
@@ -43,6 +65,7 @@ Follow up: Can you flatten the tree in-place (with O(1) extra space)?
 #         self.val = x
 #         self.left = None
 #         self.right = None
+
 
 class Solution:
     
