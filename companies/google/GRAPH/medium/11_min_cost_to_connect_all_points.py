@@ -33,6 +33,7 @@ All pairs (xi, yi) are distinct.
 
 ########################################################################################
 # Minimum Spanning Tree
+# Union FInd Class
 '''
 We can say this problem is a variant of graph problems. 
 More precisely, it is a Minimum Spanning Tree (MST) problem, 
