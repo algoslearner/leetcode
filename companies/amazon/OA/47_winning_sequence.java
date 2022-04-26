@@ -1,3 +1,4 @@
+# https://github.com/phoenix-254/Amazon-OA/blob/main/WinningSequence.java
 /*
 Construct sequence using a specified number of integers within a range. The sequence must be strictly increasing at first and then strictly decreasing. The goal is to maximize the sequence array elements starting from the beginning.
 For example, [4, 5, 4, 3, 2] beats [3,4,5,4,3] because its first element is larger, and [4, 5, 6, 5, 4] beats [4,5,4,3,2] because its third element is larger. Given the length of the sequence and the range of integers, return the winning sequence. If it is not possible to construct such a sequence, return -1.
