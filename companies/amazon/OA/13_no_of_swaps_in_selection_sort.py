@@ -1,3 +1,5 @@
+# Different wording: https://github.com/raleighlittles/Amazon-HackerRank-Assessment/blob/main/algorithm_swap/README.md
+
 '''
 I recently gave Amazon OA
 
