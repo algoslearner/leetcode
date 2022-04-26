@@ -170,3 +170,7 @@ def findNcompititors(numCompetitors,topNCompetitors,competitors,numReviews,revie
     res = []
     res = sorted(dt, key=lambda x: (-dt[x], x))
     return res[:topNCompetitors]
+
+####################################################################################
+# SOLUTION 4
+# Top-N Competitor Problem: https://leetcode.com/playground/Y7wiv8Md
