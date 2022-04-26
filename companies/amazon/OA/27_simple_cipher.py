@@ -21,3 +21,5 @@ If the value is < 0 e.g k = 2 and the character is 'A' so the value will be -2, 
 value is between 0..25 and 0 is mapped to 'A', 1 is mapped to 'B', and so on. So, basically, we have to add ASCII of 'A' again into the value.
 Now just convert the ASCII to the character and append it to string.
 """
+
+# question screenshot: https://cybergeeksquad.co/2022/02/simple-cipher-amazon-oa-solution.html
