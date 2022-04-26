@@ -50,3 +50,5 @@ class Solution:
                 connections += currNodeCount * prevNodes
                 prevNodes = currNodeCount
         return connections
+
+# Grid connections question : https://cybergeeksquad.co/2022/02/grid-connections-amazon-oa-solution.html
