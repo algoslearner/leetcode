@@ -174,3 +174,70 @@ def findNcompititors(numCompetitors,topNCompetitors,competitors,numReviews,revie
 ####################################################################################
 # SOLUTION 4
 # Top-N Competitor Problem: https://leetcode.com/playground/Y7wiv8Md
+
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) {
+        List<String> reviews = new ArrayList(
+				Arrays.asList(
+                    "newshop is providing good services in the city; everyone should use newshop",
+			        "best services by newshop's friendly staff", 
+                    "fashionbeats has great services in the city",
+					"I am proud to have fashionbeats's shoes.", 
+                    "mymarket has awesome services",
+					"Thanks newshop. You're better than fashionbeats."));
+
+		List<String> competitors = new ArrayList<String>(
+				Arrays.asList("newshop", "shopnow", "afashion", "fashionbeats", "mymarket", "tcellular"));
+
+		System.out.println(topNumCompetitors(6, 2, competitors, 6, reviews));
+    }
+    private static List<String> topNumCompetitors(int numCompetitors,
+                                        int topNCompetitors,
+                                        List<String> competitors,
+                                        int numReviews, List<String> reviews){
+        
+        Set<String> competitorSet = new HashSet<>();
+        competitorSet.addAll(competitors);
+        
+        Map<String, Integer> competitorOccurenceMap = new HashMap<>();
+        for(String competitor : competitors){
+            competitorOccurenceMap.put(competitor, 0);
+        }
+        
+        for(String review : reviews){
+            Set<String> repeatingNameSet = new HashSet<>();
+            //review = review.replaceAll("[^a-zA-Z0-9]", " ");
+            String[] words = review.split("\\W");
+            for(String word : words){
+                if(competitorSet.contains(word) && !repeatingNameSet.contains(word)){
+                    competitorOccurenceMap.put(word, competitorOccurenceMap.get(word)+1);
+                    repeatingNameSet.add(word);
+                }
+            }
+        }
+        /*
+        for(Map.Entry<String, Integer> entry : competitorOccurenceMap.entrySet()){
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
+        */
+        
+        PriorityQueue<String> minHeap = new PriorityQueue<String>(
+                                        (c1, c2) -> competitorOccurenceMap.get(c1) == competitorOccurenceMap.get(c2) ? c2.compareTo(c1) : competitorOccurenceMap.get(c1) - competitorOccurenceMap.get(c2));
+        
+        for(String competitor : competitors){
+            minHeap.offer(competitor);
+            
+            if(minHeap.size() > topNCompetitors){
+                minHeap.poll();
+            }
+        }
+        
+        List<String> result = new ArrayList<>();
+        while(!minHeap.isEmpty()){
+            result.add(0, minHeap.poll());
+        }
+        
+        return result;
+    }
+}
