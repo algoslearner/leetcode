@@ -54,6 +54,8 @@ Given the following counts of userids, there are only 3 userids that meet or exc
 345366 -4 , 38239 -5, 029323-3, 89921-1
 '''
 
+# Solution idea with question description: https://github.com/phoenix-254/Amazon-OA/blob/main/transaction_logs.java
+
 Python solution using hashMap + hashSet
 N: # of logData line
 M: # of user ids in logData
