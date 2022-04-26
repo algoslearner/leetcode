@@ -31,6 +31,7 @@ Constraints
 1 ≤ price of each item ≤ 109
 Note: a, b, c and d are the sizes of the four price arrays
 '''
+# Solution idea: https://github.com/phoenix-254/Amazon-OA/blob/main/shopping_options.java
 
 # its actually a 3sum problem
 # Shopping Option Amazon OA Question Similar to 4 Sum II problem: https://leetcode.com/problems/4sum-ii/
