@@ -1,4 +1,5 @@
-# given an array and an integer k, return the number of subarrays such that the difference between its max value and its min values is no more than k https://leetcode.com/discuss/interview-question/1904966/Amazon-orOAorset-7
+# given an array and an integer k, return the number of subarrays such that the difference between its max value and its min values is no more than k 
+# https://leetcode.com/discuss/interview-question/1904966/Amazon-orOAorset-7
 
 '''
 #################################################
@@ -9,7 +10,12 @@ e.g arr = [-1,-1,1,1,-1], return 4, since index 0 to 3 have the max length with 
 I tried to use a sliding window but only passed 4/13 cases. there was somthing i had to fix in the logic for the case arr = [ -1,-1,-1,-1,-1, 1]
 
 #################################################
-2. Given an array containing only 0 and 1 as its elements. We have to sort the array in such a manner that all the ones are grouped together and all the zeros are grouped together. The group of ones can be either at the start of the array or at the end of the array. The constraint while sorting is that every one/zero can be swapped only with its adjacent zero/one. Find the minimum number of moves to sort the array as per the description.
+2. Given an array containing only 0 and 1 as its elements. 
+We have to sort the array in such a manner that all the ones are grouped together and all the zeros are grouped together. 
+The group of ones can be either at the start of the array or at the end of the array. 
+The constraint while sorting is that every one/zero can be swapped only with its adjacent zero/one. 
+Find the minimum number of moves to sort the array as per the description.
+
 Example:
 input array ={0,1,0,1}
 Final array = {0,0,1,1}
