@@ -41,17 +41,17 @@ At most 104 calls will be made to shouldPrintMessage.
 class Logger:
 
     def __init__(self):
-        self._msg_dict = {}
+        self.msg_dict = {}
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        if message not in self._msg_dict:
+        if message not in self.msg_dict:
             # case 1). add the message to print
-            self._msg_dict[message] = timestamp
+            self.msg_dict[message] = timestamp
             return True
 
-        if timestamp - self._msg_dict[message] >= 10:
+        if timestamp - self.msg_dict[message] >= 10:
             # case 2). update the timestamp of the message
-            self._msg_dict[message] = timestamp
+            self.msg_dict[message] = timestamp
             return True
         else:
             return False
