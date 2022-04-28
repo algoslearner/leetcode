@@ -56,13 +56,17 @@ class Solution:
     def countPoints(self, rings: str) -> int:
         hashmap = {}
         count = 0
+        
         for i in range(0,len(rings),2):
             key = rings[i + 1]
             if key in hashmap:
                 hashmap.get(key).append(rings[i])
             else:
                 hashmap[key] = [rings[i]]
+        
         for key, value in hashmap.items():
             if len(set(value)) == 3:
                 count += 1
+        
         return count
+
