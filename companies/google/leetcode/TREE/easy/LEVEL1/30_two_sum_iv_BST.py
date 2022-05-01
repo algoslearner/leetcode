@@ -61,3 +61,5 @@ class Solution:
                 else:
                     r -= 1
         return False
+       
+# You can also achieve O(h) space if you use a BST Iterator for the min and max node of the tree. Runtime will still be O(n)
