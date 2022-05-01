@@ -59,13 +59,20 @@ class Solution:
     def increasingBST(self, root: TreeNode) -> TreeNode:
         def inorder(node):
             if node:
+                # track the left side first
                 inorder(node.left)
+                
+                # update the new tree
                 node.left = None
                 self.cur.right = node
                 self.cur = node
+                
+                # track the right side then
                 inorder(node.right)
 
-        ans = self.cur = TreeNode(None)
+        # generate new tree: self.cur for update, ans for return the root
+        self.cur = TreeNode(None)
+        ans = self.cur
         inorder(root)
         return ans.right
         
