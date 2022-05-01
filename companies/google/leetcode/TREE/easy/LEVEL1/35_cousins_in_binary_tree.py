@@ -75,13 +75,13 @@ class Solution:
 
 class Solution:
     def isCousins(self, root: TreeNode, x: int, y: int) -> bool:
-	# store (parent, depth) tuple
+	    # store (parent, depth) tuple
         res = []
 		
-	# bfs
+	    # bfs
         queue = deque([(root, None, 0)])        
         while queue:
-	# minor optimization to stop early if both targets found
+	        # minor optimization to stop early if both targets found
             if len(res) == 2:
                 break
             node, parent, depth = queue.popleft()
