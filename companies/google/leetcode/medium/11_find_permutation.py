@@ -78,6 +78,13 @@ class Solution:
 # TC: O(n)
 # SC: O(1)
 # https://leetcode.com/problems/find-permutation/discuss/1999094/Python-Two-pointers-Easy-understanding-for-Beginners
+# https://leetcode.com/problems/find-permutation/discuss/96624/1-liner-and-5-liner-visual-explanation
+
+# IIIIIIIII
+# 123456789
+
+# I DDIDDDI
+# 143287659
 
 class Solution:
     def findPermutation(self, s: str) -> List[int]:
@@ -90,7 +97,7 @@ class Solution:
             if s[right]=='D':
                 while right<n and s[right]=='D':
                     right+=1
-                perm[left:right+1]=perm[left:right+1][::-1]
+                perm[left:right+1] = perm[left:right+1][::-1]
                 left=right
             else:
                 left+=1
