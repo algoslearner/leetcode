@@ -35,6 +35,8 @@ The sum of all Node.val is n.
 ####################################################################################################
 '''
 # LOGIC
+# I think the problem needs to state that the total amount of coins equals the total amount of nodes.
+
 Below is the basic intuition behind this problem:
 
 Root asks the left subtree, how much do you need or you've got extra? I'll give that/take it away to/from you via our direct edge, and pass it to right child, and if something remains, I'll take it.
