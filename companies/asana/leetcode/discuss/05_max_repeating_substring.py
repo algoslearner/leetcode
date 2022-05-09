@@ -70,3 +70,17 @@ class Solution:
                 right = mid - 1 
                 
         return left - 1
+       
+###########################################################################
+# EASIER IMPLEMENTATION
+# TC: O(N)
+# SC: O(1)
+# https://leetcode.com/problems/maximum-repeating-substring/discuss/1698765/Simple-and-Easy-Solution-by-Python-3
+
+class Solution:
+    def maxRepeating(self, sequence: str, word: str) -> int:
+        k = 0
+        while word * (k + 1) in sequence:
+            k += 1
+
+        return k
