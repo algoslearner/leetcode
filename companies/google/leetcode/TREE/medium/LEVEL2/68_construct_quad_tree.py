@@ -96,3 +96,10 @@ class Solution:
     def isLeaf(self, grid):
         return all(grid[i][j] == grid[0][0] 
             for i in range(len(grid)) for j in range(len(grid[i])))
+    
+'''
+We take topleft point as reference in each considered DFS grid (node) and l as length of its edges.
+If l is 1, we know it is a leaf node.
+Else, it gets its value as boolean XOR of children nodes which are tLeft, tRight, bLeft, bRight
+And it become also as a leaf if all children has same value and all children is also leaf.
+'''
