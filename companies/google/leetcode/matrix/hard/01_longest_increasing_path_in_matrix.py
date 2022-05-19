@@ -40,6 +40,47 @@ n == matrix[i].length
 # DFS naive
 # TC: O(mn)
 # SC: O(mn)
+# https://leetcode.com/problems/longest-increasing-path-in-a-matrix/discuss/1151224/Python-by-DFS-%2B-memo-w-Hint
+
+class Solution:
+    def longestIncreasingPath(self, matrix):
+        
+        # -------------------------------------------
+        def dfs( cur_position ):
+            
+            
+            ## base case aka stop condition:
+            if cur_position in table:
+                
+                # Quick response if cur_position has been explorered
+                return table[cur_position]
+            
+            ## general cases:
+            # visit each possible neighbor to compute longest increasing path
+            
+            longest_length = 0
+            for next_pos in (cur_position + 1, cur_position - 1 , cur_position + 1j, cur_position - 1j ):
+                
+                if next_pos in grids and grids[next_pos] > grids[cur_position]:
+                    
+                    longest_length = max(longest_length, dfs(next_pos))
+            
+            # update memoization table, and 1 is the length of current position
+            table[cur_position] = 1 + longest_length
+            return table[cur_position]
+        
+        # -------------------------------------------
+        
+        # memoization for dfs
+        table = {}
+        
+        ## dictionary
+        # key: (X + Yj), 2D coordination in matrix. (j is imaginary part to present y axis in 2D coordination)
+        # value: corresponding matrix value to (X, Y)
+        grids = { x + y * 1j: value for y, row in enumerate(matrix) for x, value in enumerate(row) }
+        
+        # start DFS on each possible 2D coordination in grids
+        return max( map(dfs, grids) )
 
 ########################################################################################################
 # DP + memoization
