@@ -47,8 +47,8 @@ It is guaranteed that all the employees can be informed.
 ########################################################################################################
 # Bottom-up DFS : faster
 # I think bottom-Up is faster because O(N) time is saved in not making a graph like we are doing it in the Top-Down approach.
-# TC:
-# SC:
+# TC: O(N)
+# SC: O(N)
 
 def numOfMinutes(self, n, headID, manager, informTime):
         def dfs(i):
@@ -60,8 +60,12 @@ def numOfMinutes(self, n, headID, manager, informTime):
 
 ########################################################################################################
 # Top-down DFS
-# TC:
-# SC:
+# TC: O(N)
+# SC: O(N)
+'''
+dfs find out the time needed for each employees.
+The time for a manager = max(manager's employees) + informTime[manager]
+'''
 
 def numOfMinutes(self, n, headID, manager, informTime):
         children = [[] for i in xrange(n)]
