@@ -49,6 +49,12 @@ It is guaranteed that all the employees can be informed.
 # I think bottom-Up is faster because O(N) time is saved in not making a graph like we are doing it in the Top-Down approach.
 # TC: O(N)
 # SC: O(N)
+'''
+When you call dfs on a node it asks for information from its manager and the time taken is added to this node's inform time. 
+
+Also mark this node's manager as -1. Why? 
+Because you don't want to ask for information again once the information has reached you.
+'''
 
 def numOfMinutes(self, n, headID, manager, informTime):
         def dfs(i):
