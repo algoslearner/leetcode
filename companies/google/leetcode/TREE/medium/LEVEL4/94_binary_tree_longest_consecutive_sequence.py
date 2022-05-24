@@ -35,6 +35,14 @@ The number of nodes in the tree is in the range [1, 3 * 104].
 #         self.val = val
 #         self.left = left
 #         self.right = right
+'''
+consecutive in this context means +1 from the parent, 
+so a valid sequence needs to all be +1 +1 +1. 
+
+Ex: if you start from 3: 3, 4. Or 3,4,5. 
+See how they all increase by 1? 
+if they increase by 2 or decrease, it's not consecutive anymore.
+'''
 
 #########################################################################################################################
 # Top down DFS : similar to preorder traversal
