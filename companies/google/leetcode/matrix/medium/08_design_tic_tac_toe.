@@ -1,3 +1,4 @@
+https://leetcode.com/problems/design-tic-tac-toe/
 '''
 Assume the following rules are for the tic-tac-toe game on an n x n board between two players:
 
@@ -76,30 +77,27 @@ Follow-up: Could you do better than O(n2) per move() operation?
 class TicTacToe:
 
     def __init__(self, n: int):
-        self.n=n
-        self.horiz=[0]*n
-        self.vert=[0]*n
-        self.diag1=0
-        self.diag2=0
+        self.n = n
+        self.rows = [0] * n
+        self.cols = [0] * n
+        self.diagonal = 0
+        self.anti_diagonal = 0
 
     def move(self, row: int, col: int, player: int) -> int:
-        n=self.n
-        move=1
-        if player == 2:
-            move=-1
+        p = 1 if player == 1 else -1
         
         # update currentPlayer in rows and cols arrays
-        self.horiz[col] += move
-        self.vert[row] += move
+        self.rows[row] += p
+        self.cols[col] += p
         
         # update diagonal and anti-diagonal
-        if row==col: 
-            self.diag1 += move
-        if row+col == (n-1):
-            self.diag2 += move
+        if row == col:
+            self.diagonal += p
+        if row + col == self.n - 1:
+            self.anti_diagonal += p
         
         # check if current player wins
-        if abs(self.horiz[col])==n or abs(self.vert[row])==n or abs(self.diag1)==n or abs(self.diag2)==n:
+        if abs(self.rows[row]) == self.n or abs(self.cols[col]) == self.n or abs(self.diagonal) == self.n or abs(self.anti_diagonal) == self.n:
             return player
         
         # no one wins
