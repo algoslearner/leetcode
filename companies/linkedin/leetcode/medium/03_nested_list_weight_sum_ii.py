@@ -104,4 +104,31 @@ class Solution:
                         next_level_list.append(y)
             total_sum += level_sum
             nestedList = next_level_list
+            
+            
+###################################################################################################################
+# DFS
+
+class Solution:
+    def depthSumInverse(self, nestedList: List[NestedInteger]) -> int:
+        def dfs(l, depth, depths):
+            for num in l:
+                if num.isInteger():
+                    depths.append([num.getInteger(), depth])
+                else:
+                    dfs(num.getList(), depth+1, depths)
+        
+        depths = []
+        dfs(nestedList, 1, depths)
+        
+        max_depth = 0
+        for i in depths:
+            max_depth = max(max_depth, i[1])
+        
+        res = 0
+        d = range(max_depth+1)
+        for i in depths:
+                res += i[0]*(d[-i[1]])
+
+        return res
         return total_sum
