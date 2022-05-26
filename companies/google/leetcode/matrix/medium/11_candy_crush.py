@@ -39,6 +39,10 @@ n == board[i].length
 1 <= board[i][j] <= 2000
 '''
 
+###############################################################################################################
+# TC: O((RC)^2)
+# SC:
+
 class Solution:
     def candyCrush(self, board: List[List[int]]) -> List[List[int]]:
         R, C = len(board), len(board[0])
