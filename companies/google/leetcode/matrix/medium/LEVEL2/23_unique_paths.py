@@ -36,6 +36,14 @@ Constraints:
 # bottom up DP
 # TC: O(mn) 
 # SC: O(min(m,n))
+'''
+Solution 1: Bottom up DP
+1. Let dp[r][c] is number of paths to move from [0, 0] to [r, c].
+2. Then dp[m-1][n-1] is our result.
+3. There are maximum 2 ways to cell (r, c), that is:
+     From upper cell, dp[r][c] += dp[r-1][c]
+     From left cell, dp[r][c] += dp[r][c-1]
+'''
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
