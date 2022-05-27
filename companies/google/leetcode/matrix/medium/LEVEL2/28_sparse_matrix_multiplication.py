@@ -1,5 +1,8 @@
+# https://leetcode.com/problems/sparse-matrix-multiplication/
 '''
-Given two sparse matrices mat1 of size m x k and mat2 of size k x n, return the result of mat1 x mat2. You may assume that multiplication is always possible.
+Given two sparse matrices mat1 of size m x k and mat2 of size k x n, return the result of mat1 x mat2. 
+
+You may assume that multiplication is always possible.
 
  
 
@@ -23,12 +26,13 @@ n == mat2[i].length
 -100 <= mat1[i][j], mat2[i][j] <= 100
 '''
 
+###############################################################################################################
+# NAIVE
+# TC: O(m.k.n)
+# SC: O(1)
+
 class Solution:
     def multiply(self, mat1: List[List[int]], mat2: List[List[int]]) -> List[List[int]]:
-        
-        # TC : O(m.k.n)
-        # SC : O(1)
-        
         # Product matrix.
         ans = [[0] * len(mat2[0]) for _ in range(len(mat1))]
         
@@ -40,3 +44,5 @@ class Solution:
                         ans[row_index][col_index] += row_element * col_element
         
         return ans
+###############################################################################################################
+# READ for fb interview: https://leetcode.com/problems/sparse-matrix-multiplication/discuss/419538/What-the-interviewer-is-expecting-when-this-problem-is-asked-in-an-interview...
