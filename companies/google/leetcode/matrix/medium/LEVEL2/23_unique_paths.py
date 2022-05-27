@@ -31,30 +31,89 @@ Constraints:
 1 <= m, n <= 100
 '''
 
+# https://leetcode.com/problems/unique-paths/discuss/254228
+#########################################################################################################
+# bottom up DP
+# TC: O(mn) 
+# SC: O(min(m,n))
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [[0] * n for _ in range(m)]
+        for r in range(m):
+            for c in range(n):
+                if r == 0 and c == 0:
+                    dp[r][c] = 1
+                elif r == 0:
+                    dp[r][c] = dp[r][c-1]
+                elif c == 0:
+                    dp[r][c] = dp[r-1][c]
+                else:
+                    dp[r][c] = dp[r-1][c] + dp[r][c-1]
+        return dp[m-1][n-1]
+
+#########################################################################################################
+# bottom up DP - optimized space
+# TC: O(mn) 
+# SC: O(min(m,n))
+# Since we only access 2 states: current state dp and previous state dpPrev, we can reduce the space complexity to O(M).
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp, dpPrev = [0] * n, [0] * n
+        for r in range(m):
+            for c in range(n):
+                if r == 0 and c == 0:
+                    dp[c] = 1
+                elif r == 0:
+                    dp[c] = dp[c-1]
+                elif c == 0:
+                    dp[c] = dpPrev[c]
+                else:
+                    dp[c] = dpPrev[c] + dp[c-1]
+            dpPrev = dp
+        return dpPrev[n-1]
+       
+# or
+
+class Solution(object):
+    def uniquePaths(self, m, n):
+        # ensure m is smaller
+        if m > n:
+            m, n = n, m
+        
+        arr = [1] * m
+        for i in range(1, n):
+            for j in range(1, m):
+                arr[j] += arr[j-1] 
+            
+        return arr[-1]
+       
+# https://leetcode.com/problems/unique-paths/discuss/254228
 #########################################################################################################
 # MATH
-# TC:
+# TC: O(m + n)
 # SC: O(1)
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         return math.comb(m + n - 2, n - 1)
-      
-#########################################################################################################
-# DP
-
-# TC: O(mn) 
-# DP solution doesn't have to hold the whole 2D array.
-# Only one line needed, so the memory usage becomes O(min(M, N))
-
-# SC: O(min(m,n))
+   
+# or
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
-        if m > n:
-            m, n = n, m
-        r = [1] * m
-        for _ in range(1, n):
-            for i in range(1, m):
-                r[i] += r[i - 1]
-        return r[-1]
+        return factorial(m+n-2) // factorial(n-1) // factorial(m-1)
+   
+# or
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        ans = 1
+        j = 1
+        for i in range(m, m+n-2 + 1):
+            ans *= i
+            ans //= j
+            j += 1
+            
+        return ans
