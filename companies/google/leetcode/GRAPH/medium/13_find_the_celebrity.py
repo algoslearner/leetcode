@@ -67,6 +67,30 @@ class Solution:
 # TC: O(n)
 # SC: O(1)
 
+class Solution:
+    def isCelebrity(self, i):
+        for j in range(self.n):
+            if i != j and (knows(i, j) or not knows(j, i)):
+                return False
+        return True
+            
+    def findCelebrity(self, n: int) -> int:
+        self.n = n
+        candidate = 0
+        for i in range(n):
+            if knows(candidate, i):
+                candidate = i
+        
+        if self.isCelebrity(candidate):
+            return candidate
+                
+        return -1
+
+###############################################################################################
+# Logical deduction + caching
+# TC: O(n)
+# SC: O(1)
+
 from functools import lru_cache
 
 class Solution:
