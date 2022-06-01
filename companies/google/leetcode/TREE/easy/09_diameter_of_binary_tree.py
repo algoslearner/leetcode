@@ -32,6 +32,11 @@ The number of nodes in the tree is in the range [1, 104].
 #         self.left = left
 #         self.right = right
 
+#############################################################################################
+# DFS , recursion
+# TC: O(N)
+# SC: O(N)
+
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.diameter = 0
@@ -48,3 +53,37 @@ class Solution:
         return max(left_path, right_path) + 1
     
         
+#############################################################################################
+# follow up - print the path of the diameter
+
+class Solution:
+
+def __init__(self):
+    self.diameter = 0
+    self.diameterPath = []      
+
+def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:    
+    def dfs(node):
+        if(not node):
+            return 0,[]
+        
+        curPath = []
+        left,leftPath = dfs(node.left)
+        right, rightPath = dfs(node.right)
+        
+        if((left+right) > self.diameter):
+            self.diameter = left+right
+            self.diameterPath = leftPath + [node.val] + rightPath[::-1]
+        
+        if(left>right):
+            leftPath.append(node.val)
+            curPath = leftPath
+        else:
+            rightPath.append(node.val)
+            curPath = rightPath
+            
+        return (1+max(left,right)),curPath
+    
+    dfs(root)
+    print(self.diameterPath)
+    return self.diameter
