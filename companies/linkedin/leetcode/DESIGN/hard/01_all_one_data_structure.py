@@ -44,6 +44,83 @@ At most 5 * 104 calls will be made to inc, dec, getMaxKey, and getMinKey.
 '''
 
 ######################################################################################################
+# map, set, heap
+# https://leetcode.com/problems/all-oone-data-structure/discuss/1610032/Python-accepted-simple-solution-with-explanation-or-Map-Set-Heap
+# TC: (All methods): O(logn), where n is the unique keys in the Data Structure
+# SC: O(m), where m is the number of calls made to the Data Structure.
+
+class AllOne:
+
+    def __init__(self):
+        self.key_count = defaultdict(int)
+        self.count_key = defaultdict(set)
+        self.max_heap = []
+        self.min_heap = []
+        
+
+    def inc(self, key: str) -> None:
+        og_value = self.key_count[key]
+        # If the value exists in the count map, we have to remove the key.
+        if self.count_key[og_value]:
+            self.count_key[og_value].remove(key)
+        # Inc the value in the count map and key map 
+        og_value+=1
+        self.count_key[og_value].add(key)
+        self.key_count[key]=og_value
+        heapq.heappush(self.max_heap, -(og_value))
+        heapq.heappush(self.min_heap, (og_value))   
+        return
+        
+
+    def dec(self, key: str) -> None:
+        og_value = self.key_count[key]
+        # The value guaranteed exists in the count map (given), removing the key.
+        self.count_key[og_value].remove(key)
+        # Dec the value in the count map and key map 
+        og_value -= 1
+        # If the value has become 0, remove the key and return
+        if og_value == 0:
+            del self.key_count[key]
+            return
+        
+        self.count_key[og_value].add(key)
+        self.key_count[key]=og_value
+        heapq.heappush(self.max_heap, -(og_value))
+        heapq.heappush(self.min_heap, (og_value)) 
+        return
+
+    def getMaxKey(self) -> str:
+        # The map keeps track of how many elements there are in the DS, so if its 
+        # len is 0, we can just return back ""
+        if len(self.key_count) == 0:
+            return ""
+        
+        # We will keep popping values from the max heap and if the values exits in 
+        # the count map, we add it back to the heap and return a key from the map.
+        while self.max_heap:
+            val = -heapq.heappop(self.max_heap)
+            if self.count_key[val]:
+                heapq.heappush(self.max_heap, -val)
+                for key in self.count_key[val]:
+                    return key
+        return
+        
+
+    def getMinKey(self) -> str:
+        if len(self.key_count) == 0:
+            return ""
+        
+        # We will keep popping values from the min heap and if the values exits in 
+        # the count map, we add it back to the heap and return a key from the map.
+        while self.min_heap:
+            val = heapq.heappop(self.min_heap)
+            if self.count_key[val]:
+                heapq.heappush(self.min_heap, val)
+                for key in self.count_key[val]:
+                    return key
+        return
+
+######################################################################################################
 # doubly linked list
 # https://leetcode.com/problems/all-oone-data-structure/discuss/91428/Python-solution-with-detailed-comments
 
