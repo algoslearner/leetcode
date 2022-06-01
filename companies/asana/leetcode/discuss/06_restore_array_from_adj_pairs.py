@@ -69,3 +69,38 @@ class Solution:
             nums.append(num) 
         dfs(start)
         return nums
+##############################################################################################################################
+# hashmap
+# TC: O(N)
+# SC: O(N)
+
+class Solution:
+    def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
+        # create the map of value pairs - O(n)
+        adj = defaultdict(list)
+        for a, b in adjacentPairs:
+            adj[a].append(b)
+            adj[b].append(a)
+
+		# find the start num - O(n)
+        start = adjacentPairs[0][0]
+        nums = []
+        for k, v in adj.items():
+            if len(v) ==1:
+                start = k
+                # initialize the solution array with first two elements
+                nums = [k, v[0]]
+                break
+                
+        # build the output array - O(n)
+        for i in range(1, len(adjacentPairs)):
+            a, b = adj[nums[-1]]
+            
+            # check which the new value and append it to the array
+            if a == nums[-2]:
+                nums.append(b)
+            else:
+                nums.append(a)
+                
+        return nums
+       
