@@ -58,7 +58,13 @@ class Solution:
 
 class Solution:
     def reverseList_v2(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        prev, curr = None, head
+        curr = head
+        prev = None
+        
         while curr:
-            curr.next, prev, curr = prev, curr, curr.next
+            # curr.next, prev, curr = prev, curr, curr.next
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
         return prev
