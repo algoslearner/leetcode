@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/maximum-repeating-substring/
+# https://leetcode.com/discuss/interview-question/859126/Codesignal-Problem-maxKoccurences
 '''
 1668. Maximum Repeating Substring
 
