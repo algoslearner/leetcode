@@ -1,5 +1,9 @@
-Python Code Snippets
-List
+# Python Code Snippets
+ 
+ 
+## List
+ 
+```python
 # Create a list and iterate over it
  
 numbers = []
@@ -15,6 +19,9 @@ for num in numbers:
 2
 3
 '''
+```
+ 
+```python
 # Create a list and iterate over it
  
 numbers = [1, 2, 3]
@@ -28,6 +35,9 @@ for i in range(length):
 2
 3
 '''
+```
+ 
+```python
 # Modify values in a list
  
 numbers = [1, 2, 3]
@@ -38,6 +48,9 @@ print(numbers)
 '''
 [2, 3, 4]
 '''
+```
+ 
+```python
 # Sort a list in-place in ascending order
  
 a = [2, 4, 1, 9, 8]
@@ -47,6 +60,9 @@ print(a)
 '''
 [1, 2, 4, 8, 9]
 '''
+```
+ 
+```python
 # Sort a list in-place in descending order
  
 a = [2, 4, 1, 9, 8]
@@ -56,7 +72,11 @@ print(a)
 '''
 [9, 8, 4, 2, 1]
 '''
-Strings
+```
+ 
+## Strings
+ 
+```python
 # Declare a string and iterate over the characters
  
 string = 'Hello'
@@ -70,6 +90,9 @@ l
 l
 o
 '''
+```
+ 
+```python
 # Declare a string and iterate over the characters
  
 string = 'Hello'
@@ -83,6 +106,9 @@ l
 l
 o
 '''
+```
+ 
+```python
 # Modifying a string
  
 string = 'hello'
@@ -91,6 +117,9 @@ string[0] = 'H'
 '''
 TypeError: 'str' object does not support item assignment
 '''
+```
+ 
+```python
 # Sort a string
  
 s = 'shivam'
@@ -100,7 +129,12 @@ print(sorted_s)
 '''
 ahimsv
 '''
-Tuples
+```
+ 
+ 
+## Tuples
+ 
+```python
 # Declare a tuple and iterate over it
  
 vowels = ('a', 'e', 'i', 'o', 'u')
@@ -114,6 +148,9 @@ i
 o
 u
 '''
+```
+ 
+```python
 # Declare a tuple and print elements
  
 vowels = ('a', 'e', 'i', 'o', 'u')
@@ -126,6 +163,9 @@ a
 i
 u
 '''
+```
+ 
+```python
 # Modify a tuple
  
 vowels = ('a', 'e', 'i', 'o', 'u')
@@ -134,7 +174,11 @@ vowels[0] = 'b'
 '''
 TypeError: 'tuple' object does not support item assignment
 '''
-Dictionary
+```
+ 
+## Dictionary
+ 
+```python
 # Declare a dictionary and print key value pairs
  
 d = {'1': 'Dhoni', '2': 'Sachin', '3': 'Dravid'}
@@ -147,6 +191,9 @@ for k,v in d.items():
 2 Sachin
 3 Dravid
 '''
+```
+ 
+```python
 # Dynamically insert key values and print it
  
 d = {}
@@ -167,7 +214,11 @@ for k,v in d.items():
 4 16
 5 25
 '''
-Set
+```
+ 
+## Set
+ 
+```python
 # Declare a set, insert values and print it
  
 s = set()
@@ -180,7 +231,11 @@ print(s)
 '''
 {1, 3, 4}
 '''
-2D list/array
+```
+ 
+## 2D list/array
+ 
+```python
 # Declare a 2D list
  
 N = 5
@@ -195,6 +250,9 @@ print(matrix)
 '''
 [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 '''
+```
+ 
+```python
 # Declare a 2D list
  
 N = 5
@@ -206,6 +264,9 @@ print(matrix)
 '''
 [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 '''
+```
+ 
+```python
 # Declare a 2D list
  
 N = 5
@@ -217,6 +278,9 @@ print(matrix)
 '''
 [[0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0]]
 '''
+```
+ 
+```python
 # Modify the values in a 2D list
  
 matrix = [[0]*4 for i in range(3)]
@@ -228,7 +292,11 @@ print(matrix)
 '''
 [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
 '''
-Deque
+```
+ 
+## Deque
+ 
+```python
 # Operations on deque
  
 from collections import deque
@@ -247,7 +315,11 @@ deque([4, 3, 1, 2])
 2
 4
 '''
-Queue
+```
+ 
+## Queue
+ 
+```python
 # Implement queue using deque
  
 from collections import deque
@@ -265,6 +337,9 @@ deque([1, 2, 3])
 1
 2
 '''
+```
+ 
+```python
 # Implement queue using Queue
  
 from queue import Queue
@@ -283,7 +358,11 @@ print(q.qsize())
 2
 1
 '''
-Stack
+```
+ 
+## Stack
+ 
+```python
 # Implement stack using list
  
 stack = []
@@ -302,6 +381,9 @@ print(stack)
 2
 [1]
 '''
+```
+ 
+```python
 # Implement stack using deque
  
 from collections import deque
@@ -322,7 +404,11 @@ deque([1, 2, 3])
 2
 deque([1])
 '''
-Ordered dictionary
+```
+ 
+## Ordered dictionary
+ 
+```python
 # Operations on ordereddict
  
 from collections import OrderedDict
@@ -346,7 +432,11 @@ print(d.popitem())
 (1, 2)
 (3, 4)
 '''
-Defaultdict
+```
+ 
+## Defaultdict
+ 
+```python
 # Operations on defaultdict
  
 from collections import defaultdict
@@ -366,7 +456,11 @@ for k,v in d.items():
 5 1
 8 1
 '''
-Counters
+```
+ 
+## Counters
+ 
+```python
 from collections import Counter
  
 numbers = [1, 1, 2, 5, 2, 8]
@@ -381,7 +475,11 @@ for k,v in cntr.items():
 5 1
 8 1
 '''
-Namedtuples
+```
+ 
+## Namedtuples
+ 
+```python
 from collections import namedtuple
  
 Point = namedtuple('Point', ['x', 'y'])
@@ -391,7 +489,11 @@ print(p1.x, p1.y)
 '''
 1 2
 '''
-Heaps
+```
+ 
+## Heaps
+ 
+```python
 # Min heap usage
  
 import heapq
@@ -409,7 +511,11 @@ print(L)
 2
 [3]
 '''
-Binary search
+```
+ 
+## Binary search
+ 
+```python
 # Check if an elements is present or not and return the index if element is present
  
 from bisect import bisect_left
@@ -424,6 +530,9 @@ else:
 '''
 4 is present at index 2
 '''
+```
+ 
+```python
 # Find index of first element greater than or equal to target(x)
  
 from bisect import bisect_left
@@ -438,6 +547,9 @@ else:
 '''
 All elements are smaller than the target element
 '''
+```
+ 
+```python
 # Find index of first element greater than target(x)
  
 from bisect import bisect_right
@@ -452,7 +564,11 @@ else:
 '''
 4
 '''
-Linked list
+```
+ 
+## Linked list
+ 
+```python
 # Create a singly linked list and traverse it
  
 class Node:
@@ -489,7 +605,11 @@ ll.traverse()
 2
 3
 '''
-Binary Tree
+```
+ 
+## Binary Tree
+ 
+```python
 # Create a binary tree and traverse it
  
 class Node:
@@ -529,7 +649,11 @@ inorder(root)
 3
 5
 '''
-Graph
+```
+ 
+## Graph
+ 
+```python
 # Create a graph and traverse it
  
 from collections import defaultdict
@@ -556,3 +680,5 @@ dfs(4, graph, visited)
 2
 3
 '''
+```
+
