@@ -1,5 +1,6 @@
 # https://medium.com/codex/how-to-code-a-simple-chess-game-in-python-9a9cb584f57
 # https://github.com/xsanon/chess
+# You are implementing a chess game. Describe how to check for a checkmate scenario.
 
 ########################################################################################
 # board.py
