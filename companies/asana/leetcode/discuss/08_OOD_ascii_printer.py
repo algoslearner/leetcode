@@ -5,6 +5,8 @@ I searched this question online but couldn't find an answer. I would love to kno
 '''
 
 # Do you know what was ascii printer question? something like this? http://memex.cc/Technical_interview#print-out-an-ascii-art-piece
+# My one hour coding challenge onsite was to program an ASCII printer. There were several functions of the program to implement, if you know OOP, linked lists, and 2d matrices you'll be fine. 
+
 
 
 #################################################################################################################
