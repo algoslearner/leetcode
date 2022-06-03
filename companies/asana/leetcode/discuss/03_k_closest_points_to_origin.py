@@ -36,7 +36,7 @@ Constraints:
 ##################################################################################################
 # SORT
 # TC: O(n log n)
-# SC: O(n)
+# SC: O(n), for extra space required by sorting process
 
 class Solution: 
     def euclideanDistance(self, point: List[int]) -> int:
@@ -48,7 +48,7 @@ class Solution:
     
 ##################################################################################################
 # HEAP
-# TC: O(n)
+# TC: O(n log n)
 # SC: O(n)    
             
 class Solution: 
