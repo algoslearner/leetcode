@@ -3,6 +3,10 @@
 # I had to design the data structure for solved puzzle and how I would write the solve method.
 # you don't need backtracking, since each piece is unique
 
+#########################################################################################
+# Design a jigsaw puzzle algorithm, given a Piece class, a Side class containing sideTypes, 
+# and a helper function which returns whether or not two pieces are a match
+
 ####################################################################################
 # OOP design of a jigsaw puzzle. 
 # Imagine you want to solve a rectangular jigsaw puzzle. What classes and relationships do you need? Design an algo for solving the actual puzzle
