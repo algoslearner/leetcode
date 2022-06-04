@@ -1,4 +1,7 @@
 # https://leetcode.com/problems/partition-to-k-equal-sum-subsets/
+# Very classical question. Ref: http://www.geeksforgeeks.org/partition-set-k-subsets-equal-sum/
+
+
 '''
 698. Partition to K Equal Sum Subsets
 
