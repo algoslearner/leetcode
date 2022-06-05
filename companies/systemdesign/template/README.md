@@ -1,5 +1,9 @@
 https://leetcode.com/discuss/career/229177/My-System-Design-Template
 
+System design
+https://github.com/donnemartin/system-design-primer
+
+
 (1) FEATURE EXPECTATIONS [5 min]
 
         (1) Use cases
