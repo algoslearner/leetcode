@@ -26,12 +26,14 @@ https://leetcode.com/discuss/career/229177/My-System-Design-Template
 		
 		
 (3) DESIGN GOALS [5 min]
+
         (1) Latency and Throughput requirements
         (2) Consistency vs Availability  [Weak/strong/eventual => consistency | Failover/replication => availability]
 	
 	
 	
 (4) HIGH LEVEL DESIGN [5-10 min]
+
         (1) APIs for Read/Write scenarios for crucial components
         (2) Database schema
         (3) Basic algorithm
@@ -39,8 +41,8 @@ https://leetcode.com/discuss/career/229177/My-System-Design-Template
 	
 	
 	
-	
 (5) DEEP DIVE [15-20 min]
+
         (1) Scaling the algorithm
         (2) Scaling individual components: 
                 -> Availability, Consistency and Scale story for each component
@@ -78,12 +80,9 @@ https://leetcode.com/discuss/career/229177/My-System-Design-Template
                         > REST
                         > RPC
 		
-		
-		
-		
-			
 			
 (6) JUSTIFY [5 min]
+
 	(1) Throughput of each layer
 	(2) Latency caused between each layer
 	(3) Overall latency justification
