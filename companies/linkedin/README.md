@@ -1,5 +1,6 @@
 # Python Code Snippets
  
+ https://google.github.io/styleguide/pyguide.html
  
 ## List
  
