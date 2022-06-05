@@ -48,3 +48,50 @@ Each ingredients[i] does not contain any duplicate values.
 
 #####################################################################################################################
 # https://leetcode.com/problems/find-all-possible-recipes-from-given-supplies/discuss/1646584/JavaPython-3-Toplogical-Sort-w-brief-explanation.
+# READ the details in link
+
+def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
+        # Construct directed graph and count the in-degrees
+        ingredient_to_recipe, in_degree = defaultdict(set), Counter()
+        for rcp, ingredient in zip(recipes, ingredients):
+            for ing in ingredient:
+                ingredient_to_recipe[ing].add(rcp)
+            in_degree[rcp] = len(ingredient)
+        # Topological sort.    
+        available, ans = deque(supplies), []
+        while available:
+            ing = available.popleft()
+            for rcp in ingredient_to_recipe.pop(ing, set()):
+                in_degree[rcp] -= 1
+                if in_degree[rcp] == 0:
+                    available.append(rcp)
+                    ans.append(rcp)
+        return ans
+
+####################################################################################################################
+# DFS
+
+class Solution:
+    def findAllRecipes(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
+        res = set()
+        for r, recipe in enumerate(recipes):
+            self.dfs(recipe, recipes, ingredients[r], ingredients, supplies, res, set())
+        return list(res)
+            
+    def dfs(self, recipe: str, recipes: List[str], ingredients: List[str], all_ingredients: List[List[str]], supplies: List[str], res: List[str], visited):
+        possible = True
+        for ingredient in ingredients:
+            if ingredient in supplies:
+                continue
+            if ingredient in res:
+                continue
+            if ingredient in recipes:
+                if ingredient not in visited:
+                    visited.add(ingredient)
+                    self.dfs(ingredient, recipes, all_ingredients[recipes.index(ingredient)], all_ingredients, supplies, res, visited)
+                    if ingredient in res:
+                        continue
+            possible = False
+            break
+        if possible:
+            res.add(recipe)
