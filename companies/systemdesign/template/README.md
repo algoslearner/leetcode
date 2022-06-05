@@ -39,6 +39,7 @@ https://leetcode.com/discuss/career/229177/My-System-Design-Template
 	
 	
 	
+	
 (5) DEEP DIVE [15-20 min]
         (1) Scaling the algorithm
         (2) Scaling individual components: 
@@ -76,10 +77,16 @@ https://leetcode.com/discuss/career/229177/My-System-Design-Template
                         > UDP
                         > REST
                         > RPC
-			
+		
+		
+		
+		
 			
 			
 (6) JUSTIFY [5 min]
 	(1) Throughput of each layer
 	(2) Latency caused between each layer
 	(3) Overall latency justification
+
+
+
