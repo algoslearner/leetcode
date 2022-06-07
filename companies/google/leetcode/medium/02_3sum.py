@@ -67,7 +67,7 @@ class Solution:
 ###########################################################################################################
 # Two Pointer
 # TC: O(n2 + nlogn)
-# SC: O(log n) or O(n) for sorting
+# SC: O(log n) for sorting
 
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
