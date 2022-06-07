@@ -72,14 +72,12 @@ class Solution:
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         output = []
-        nums.sort()
         
+        nums.sort()
         for i in range(len(nums)):
-            if nums[i] > 0:
-                break
             if i == 0 or nums[i-1] != nums[i]:
                 self.twoSum(nums, i, output)
-        
+                
         return output
     
     def twoSum(self, nums: List[int], i: int, output: List[List[int]]):
@@ -95,9 +93,9 @@ class Solution:
                 output.append([nums[i], nums[lo], nums[hi]])
                 lo += 1
                 hi -= 1
+                
+                # avoid duplicates
                 while lo < hi and nums[lo] == nums[lo - 1]:
                     lo += 1
-
-
-                        
+                
                         
