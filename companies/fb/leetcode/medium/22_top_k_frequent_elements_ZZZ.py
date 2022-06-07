@@ -32,19 +32,23 @@ class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         if k == len(nums): return nums
     
-        freqmap = Counter(nums)
-        # return heapq.nlargest(k, count.keys(), key=count.get) 
-    
+        freqmap = {}
+        for i in nums:
+            freqmap[i] = freqmap.get(i,0) + 1
+        
+        # return heapq.nlargest(k, freqmap.keys(), key = freqmap.get)
+        
+        # If we use a max heap, will it not be 0(N + KlogN)? N for heapify and KLogN for popping K times.
         minHeap = []
         for n, freq in freqmap.items():
             heapq.heappush(minHeap,(freq,n))
             if len(minHeap) > k:
                 heapq.heappop(minHeap)
         
-        top_freq_numbers = []
-        while(minHeap):
-            top_freq_numbers.append(heapq.heappop(minHeap)[1])
-        return top_freq_numbers
+        topNumbers = []
+        while minHeap:
+            topNumbers.append(heapq.heappop(minHeap)[1])
+        return topNumbers
 
 
 ######################################################################################################
@@ -56,17 +60,18 @@ class Solution:
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         bucket = [[] for _ in range(len(nums) + 1)]
-        
         Count = Counter(nums).items()  
+     
         for num, freq in Count: 
-            bucket[freq].append(num) 
+            bucket[-freq].append(num) 
+        # return list(itertools.chain(*buckets))[:k]
         
-        #flat_list = [item for sublist in bucket for item in sublist]
+        # flat_list = [item for sublist in bucket for item in sublist]
         flat_list = []
         for sublist in bucket:
             for item in sublist:
                 flat_list.append(item)
-        return flat_list[::-1][:k]
+        return flat_list[:k]
 
        
 ###############################################################################################################
