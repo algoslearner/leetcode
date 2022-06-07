@@ -77,17 +77,14 @@ Use split in Java with a second argument -1 to make it work as split in Python.
 
 class Codec:
     def encode(self, strs: [str]) -> str:
-        msg =  ''
-        for s in strs : 
-            msg+=s + chr(259)
-        msg=msg[0:len(msg)-1]   
-        return msg     
+        delimiter = chr(259)
+        return delimiter.join(strs)
         
     def decode(self, s: str) -> [str]:
-        lst = s.split(chr(259)) 
-        return lst 
+        delimiter = chr(259)
+        return s.split(delimiter)
         
-
+        
 
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()
