@@ -39,22 +39,25 @@ The number of nodes in the tree is in the range [1, 104].
 
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
-        queue = deque([root])
-        res = []
-        while queue:
-            count = len(queue)
-            level_len = len(queue)
-            level_sum = 0
-            while count:
-                node = queue.popleft()
-                level_sum += node.val
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-                count -= 1
-            res.append(level_sum / level_len)
-        return res
+        result = []
+        
+        if not root:
+            return []
+        
+        q = deque()
+        q.append(root)
+        while q:
+            levelsize = len(q)
+            curr_sum = 0
+            for _ in range(levelsize):
+                node = q.popleft()
+                curr_sum += node.val
+                if node.left: q.append(node.left)
+                if node.right: q.append(node.right)
+            avg = curr_sum / levelsize
+            result.append(avg)
+        
+        return result
       
       
  ###############################################################################################
