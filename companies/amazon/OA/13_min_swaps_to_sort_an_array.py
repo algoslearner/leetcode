@@ -70,3 +70,15 @@ private static void update(int index, int value, int[] tree, int size) {
     return result;
 }
 
+
+########################################################################################################################
+# https://leetcode.com/discuss/interview-question/2149341/Amazon-OA
+'''
+Minimum swaps to sort an array
+[2, 4, 3, 1, 6] -- 3 swaps
+[3, 2, 1] -- 3 swaps
+[4, 7] -- 0 swap
+[7, 4] -- 1 swap
+
+I tried a couple of approaches but could not pass most test cases. :(
+'''
