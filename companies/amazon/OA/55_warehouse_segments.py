@@ -27,3 +27,4 @@ Constraints
 # Similar to https://leetcode.com/problems/sum-of-subarray-ranges/
 # It's similar to 239. Sliding Window Maximum. https://leetcode.com/problems/sliding-window-maximum/
 # https://ideone.com/sN8H2F the problem simplifies to finding sum of cnt(a[i]-k <= a[j]) such that j < i
+# https://leetcode.com/discuss/interview-question/2149341/Amazon-OA
