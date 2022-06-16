@@ -1,4 +1,9 @@
 # https://leetcode.com/discuss/interview-question/1505615/Amazon-OA
+# https://leetcode.com/discuss/interview-question/1787599/Amazon-or-OA
+# find number of possible subarrays from an array , where max and min difference of elements in subarray is less than the given limit.
+
+input : limit ,array
+output : return count of all possible combinations
 '''
 Get the sum of min and max diff for all subarrays
 
