@@ -1,6 +1,29 @@
 # https://leetcode.com/discuss/interview-question/2144970/Amazon-OA
-# get the password strength , same as https://leetcode.com/problems/total-appeal-of-a-string/
+'''
+Hi, I got 2 questions in amazon online asssessment
 
+Given a binary string write an algorithm to calculate minimum number of swaps required to make it a palindrome for eg 11101 requires on swap between 3rd and 4th to make it 11011
+
+Password strength determination - Given a password determine the strength of the password which is calculated by getting substrings in password and calculating strength based on number of unique characters in the substring and adding all the strength
+Eg
+
+Good
+
+g - 1
+o - 1
+o - 1
+d -1
+go - 2
+oo - 1
+od- 2
+goo - 2
+ood - 2
+good - 3
+
+total = 16
+'''
+
+# get the password strength , same as https://leetcode.com/problems/total-appeal-of-a-string/
 '''
 2262. Total Appeal of A String
 Hard
