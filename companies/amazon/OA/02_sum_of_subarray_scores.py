@@ -1,3 +1,11 @@
+# https://leetcode.com/discuss/interview-question/1754686/Amazon-or-OA
+'''
+For an array of size n, calculate the sum of power of every subarray.
+Power of subarray [i, j] is min(i, j) * sum(i, j).
+Sum of power of every subarray in [2,3,2,1] is 69 (36 + 25 + 7 + 1):
+[2]: 2 * 2 = 4, [2, 3]: 2 * 5 = 10, [2,3,2]: 2 * 7 = 14, [2, 3, 2, 1]: 1 * 8 = 8 [3]: 3 * 3 = 9, [3,2]: 2 * 5 = 10, [3,2,1]:1 * 6 = 6 [2]: 2 * 2 = 4, [2, 1]: 1 * 3 = 3 [1]: 1 * 1 = 1
+'''
+
 '''
 You are given an input integer array of n-length.
 
