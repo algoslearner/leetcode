@@ -45,48 +45,43 @@ Constraints:
 '''
 
 '''
-Explanation
-Given the number of bags,
-return the minimum capacity of each bag,
-so that we can put items one by one into all bags.
+Binary search probably would not come to our mind when we first meet this problem. 
+We might automatically treat weights as search space and then realize we've entered a dead end after wasting lots of time. 
+In fact, we are looking for the minimal one among all feasible capacities. We dig out the monotonicity of this problem: 
+if we can successfully ship all packages within D days with capacity m, 
+then we can definitely ship them all with any capacity larger than m. 
 
-We binary search the final result.
-The left bound is max(A),
-The right bound is sum(A).
+Now we can design a condition function, let's call it feasible, given an input capacity, 
+it returns whether it's possible to ship all packages within D days. 
+This can run in a greedy way: if there's still room for the current package, 
+we put this package onto the conveyor belt, otherwise we wait for the next day to place this package. If the total days needed exceeds D, we return False, otherwise we return True.
 
-
-More Good Binary Search Problems
-Here are some similar binary search problems.
-Also find more explanations.
-Good luck and have fun.
-
-Minimum Number of Days to Make m Bouquets
-1. Find the Smallest Divisor Given a Threshold
-2. Divide Chocolate
-3. Capacity To Ship Packages In N Days
-4. Koko Eating Bananas
-5. Minimize Max Distance to Gas Station
-6. Split Array Largest Sum
+Next, we need to initialize our boundary correctly. Obviously capacity should be at least max(weights), otherwise the conveyor belt couldn't ship the heaviest package. On the other hand, capacity need not be more thansum(weights), because then we can ship all packages in just one day.
 '''
 
-# code : 
-# https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/discuss/256729/JavaC%2B%2BPython-Binary-Search
-
-# Time: O(n log m)
-# Space : O(1)
+# TC: O(n log m)
+# SC: O(1)
 
 class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
-        left, right = max(weights), sum(weights)
+        def feasible(capacity) -> bool:
+            curr_days = 1
+            total = 0
+            for weight in weights:
+                total += weight
+                if total > capacity: # too heavy, wait for the next day
+                    total = weight
+                    curr_days += 1
+                    if curr_days > days: # cannot ship within given days
+                        return False
+            return True
+        
+        left = max(weights)
+        right = sum(weights)
         while left < right:
-            mid = (left + right) // 2
-            need = 1 # days needed
-            cur = 0 # current cargo
-            for w in weights:
-                if cur + w > mid:
-                    need += 1
-                    cur = 0
-                cur += w
-            if need > days: left = mid + 1
-            else: right = mid
+            mid = left + (right - left) // 2
+            if feasible(mid):
+                right = mid
+            else:
+                left = mid + 1
         return left
