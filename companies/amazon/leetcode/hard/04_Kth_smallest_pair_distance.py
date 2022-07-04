@@ -36,7 +36,7 @@ n == nums.length
 '''
 
 ######################################################################################################################################
-# binary search
+# binary search + sliding window
 
 '''
 Example :
@@ -56,14 +56,14 @@ Very similar to LC 668 above, both are about finding Kth-Smallest. Just like LC 
 class Solution:
     def smallestDistancePair(self, nums: List[int], k: int) -> int:
         def enough(distance) -> bool:
-            count, i, j = 0, 0, 0 # two pointers
-            while i < n and j < n:
-                while j < n and nums[j] - nums[i] <= distance: # move fast pointer
-                    j += 1
-                count += j - i - 1 # count pairs
-                i += 1 # move slow pointer
+            count = left = 0
+            for right in range(len(nums)):
+                while nums[right] - nums[left] > distance:
+                    left += 1
+                count += right - left
             return count >= k
         
+        nums.sort()
         n = len(nums)
         left = 0
         right = max(nums) - min(nums)
