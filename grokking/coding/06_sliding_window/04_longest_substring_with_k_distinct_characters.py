@@ -26,8 +26,8 @@ Explanation: The longest substring with no more than '10' distinct characters is
 
 ##############################################################################################################
 # sliding window on frequency hashmap
-# TC:
-# SC:
+# TC: O(N)
+# SC: O(k)
 
 def longest_substring(word, k):
   maxlength = 0
