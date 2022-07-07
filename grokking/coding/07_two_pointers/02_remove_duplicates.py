@@ -22,11 +22,15 @@ Explanation: The first two elements after removing the duplicates will be [2, 11
 # TC: O(N)
 # SC: O(1)
 
-def remove_duplicates(arr):
-  index = 0
-  for i in range(1, len(arr)):
-    if arr[i] != arr[i-1]:
-      arr[index] = arr[i]
-      index += 1
-   return index
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        index = 0
+        for i in range(len(nums)):
+            if i == 0:
+                nums[index] = nums[i]
+                index += 1
+            elif nums[i] != nums[i-1]:
+                nums[index] = nums[i]
+                index += 1
+        return index
 
