@@ -36,8 +36,8 @@ Explanation: The string contains "acb" which is a permutation of the given patte
 
 #################################################################################################################
 # sliding window
-# TC: O(N)
-# SC: O(1)
+# TC: O(n + m)
+# SC: O(m)
 
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
