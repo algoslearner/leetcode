@@ -38,7 +38,7 @@ def length_of_longest_substring(word, k):
     
     # sliding window shrinks
     window_size = end - start + 1
-    if window_size - max_repeat > k:
+    if window_size - max_freq > k:
       left_char = word[start]
       freqmap[left_char] -= 1
       if freqmap[left_char] == 0: del freqmap[left_char]
