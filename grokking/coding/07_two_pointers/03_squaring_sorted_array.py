@@ -18,7 +18,7 @@ Output: [0, 1, 1, 4, 9]
 # SC: O(1)
 
 def make_squares(arr):
-  squares = [0 for i in range(n)]
+  squares = [0] * (len(arr) - 1)
   left = 0
   right = len(arr) - 1
   
