@@ -27,6 +27,19 @@ The number of nodes in the list is in the range [1, 105].
 Follow up: Could you do it in O(n) time and O(1) space?
 '''
 
+###########################################################################################################################
+# brute force: copy into arraylist
+# TC: O(n)
+# SC: O(n)
+
+def isPalindrome(self, head: ListNode) -> bool:
+    vals = []
+    current_node = head
+    while current_node is not None:
+        vals.append(current_node.val)
+        current_node = current_node.next
+    return vals == vals[::-1]
+
 ############################################################################################################################
 # fast and slow pointers
 # TC: O(n)
@@ -38,58 +51,44 @@ class Node:
     self.next = next
 
 
-def is_palindromic_linked_list(head):
-  if head is None or head.next is None:
-    return True
+class Solution:
+    def isPalindrome(self, head: ListNode) -> bool:
+        if head is None:
+            return True
 
-  # find middle of the LinkedList
-  slow, fast = head, head
-  while (fast is not None and fast.next is not None):
-    slow = slow.next
-    fast = fast.next.next
+        # Find the end of first half and reverse second half.
+        first_half_end = self.end_of_first_half(head)
+        second_half_start = self.reverse_list(first_half_end.next)
 
-  head_second_half = reverse(slow)  # reverse the second half
-  # store the head of reversed part to revert back later
-  copy_head_second_half = head_second_half
+        # Check whether or not there's a palindrome.
+        result = True
+        first_position = head
+        second_position = second_half_start
+        while result and second_position is not None:
+            if first_position.val != second_position.val:
+                result = False
+            first_position = first_position.next
+            second_position = second_position.next
 
-  # compare the first and the second half
-  while (head is not None and head_second_half is not None):
-    if head.value != head_second_half.value:
-      break  # not a palindrome
+        # Restore the list and return the result.
+        first_half_end.next = self.reverse_list(second_half_start)
+        return result    
 
-    head = head.next
-    head_second_half = head_second_half.next
+    def end_of_first_half(self, head):
+        fast = head
+        slow = head
+        while fast.next is not None and fast.next.next is not None:
+            fast = fast.next.next
+            slow = slow.next
+        return slow
 
-  reverse(copy_head_second_half)  # revert the reverse of the second half
-
-  if head is None or head_second_half is None:  # if both halves match
-    return True
-
-  return False
-
-
-def reverse(head):
-  prev = None
-  while (head is not None):
-    next = head.next
-    head.next = prev
-    prev = head
-    head = next
-  return prev
-
-
-def main():
-  head = Node(2)
-  head.next = Node(4)
-  head.next.next = Node(6)
-  head.next.next.next = Node(4)
-  head.next.next.next.next = Node(2)
-
-  print("Is palindrome: " + str(is_palindromic_linked_list(head)))
-
-  head.next.next.next.next.next = Node(2)
-  print("Is palindrome: " + str(is_palindromic_linked_list(head)))
-
-
-main()
+    def reverse_list(self, head):
+        previous = None
+        current = head
+        while current is not None:
+            next_node = current.next
+            current.next = previous
+            previous = current
+            current = next_node
+        return previous
 
