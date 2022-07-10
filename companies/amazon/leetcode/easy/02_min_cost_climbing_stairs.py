@@ -58,3 +58,16 @@ class Solution:
             one_step = min(one_step + cost[i - 1], two_step + cost[i - 2])
             two_step = temp
         return one_step
+       
+###########################################################################################################################
+# recursion
+
+class Solution:
+    def minCostClimbingStairs(self, cost: List[int]) -> int:
+        n = len(cost)
+        @cache
+        def recur(i: int) -> int:
+            if i >= n:
+                return 0
+            return min(recur(i + 1), recur(i + 2)) + cost[i]
+        return min(recur(0), recur(1))
