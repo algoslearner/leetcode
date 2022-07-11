@@ -56,3 +56,35 @@ def find_employee_free_time(schedule):
                                                queueTop.intervalIndex + 1))
 
     return result
+
+
+#############################################################################################################################
+# sorting
+# TC: O(n log n)
+# SC: O(n)
+# https://leetcode.com/problems/employee-free-time/discuss/170551/Simple-Python-9-liner-beats-97-(with-explanation)
+'''
+Key points:
+
+1. recognize that this is very similar to merging intervals (https://leetcode.com/problems/merge-intervals/description/)
+2. it doesn't matter which employee an interval belongs to, so just flatten
+3. can build result array while merging, don't have to do afterward (and don't need full merged arr)
+'''
+
+"""
+# Definition for an Interval.
+class Interval:
+    def __init__(self, start: int = None, end: int = None):
+        self.start = start
+        self.end = end
+"""
+
+class Solution:
+    def employeeFreeTime(self, schedule: '[[Interval]]') -> '[Interval]':
+        ints = sorted([i for s in schedule for i in s], key=lambda x: x.start)
+        res, end = [], ints[0].end
+        for i in ints[1:]:
+            if i.start > end:
+                res.append(Interval(end, i.start))
+            end = max(end, i.end)
+        return res
