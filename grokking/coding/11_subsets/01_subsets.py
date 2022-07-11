@@ -17,16 +17,14 @@ Output: [], [1], [5], [3], [1,5], [1,3], [5,3], [1,5,3]
 # SC: O(N * 2^N)
 
 def find_subsets(nums):
-  subsets = []
-  # start by adding the empty subset
-  subsets.append([])
-  for currentNumber in nums:
-    # we will take all existing subsets and insert the current number in them to create new subsets
-    n = len(subsets)
-    for i in range(n):
-      # create a new subset from the existing subset and insert the current element to it
-      set1 = list(subsets[i])
-      set1.append(currentNumber)
-      subsets.append(set1)
+  output = []
+  output.append([])
 
-  return subsets
+  for curr in nums:
+    for i in range(len(output)):
+      set1 = list(output[i])
+      set1.append(curr)
+      output.append(set1)
+
+
+  return output
