@@ -21,8 +21,8 @@ Explanation: The smallest missing positive numbers are 1 and 2.
 '''
 
 ############################################################################################################################
-# TC: O(n)
-# SC: O(1)
+# TC: O(n + k)
+# SC: O(k), for output
 
 def find_first_k_missing_positive(nums, k):
   n = len(nums)
