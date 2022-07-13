@@ -20,7 +20,7 @@ Explanation: 10 is 1010 in binary, its complement is 0101 in binary, which is 5 
 
 ########################################################################################################################################
 # xor
-# TC: O(n)
+# TC: O(b)
 # SC: O(1)
 
 def calculate_bitwise_complement(num):
