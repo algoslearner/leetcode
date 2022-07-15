@@ -47,3 +47,17 @@ class Solution:
             if self.digitsum(n) % 2 == 0:
                 count += 1
         return count
+       
+#######################################################################################################################
+# tc: O(log n)
+# sc: O(1)
+# So the evens can be given as num//2 in all the cases except when the number itself is even but digit sum is odd. Example:10, 12, 30 In such cases the even numbers would less by 1 as that particular number is not a valid number.
+
+ def countEven(self, num: int) -> int:
+        n, dSum = num, 0
+        while n > 0: # Calculate digit sum of numbers
+            dSum += n%10
+            n = n//10
+        if num % 2 == 0 and dSum % 2 == 1:
+            return num//2 - 1
+        return num//2
