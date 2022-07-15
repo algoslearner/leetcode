@@ -46,3 +46,15 @@ class Solution:
         if low % 2 == 0:
             return (high - low + 1) // 2
         return (high - low) // 2 + 1
+     
+# OR
+
+class Solution:
+    def countOdds(self, low: int, high: int) -> int:
+        a = high - low + 1
+        if low % 2 != 0 and high % 2 != 0:
+            b = a // 2 + 1
+        else:
+            b = a // 2
+        
+        return b
