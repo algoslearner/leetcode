@@ -37,39 +37,45 @@ All the pairs [prevCoursei, nextCoursei] are unique.
 
 ###################################################################################################################
 # TOPOLOGICAL SORTING
-# TC:
-# SC:
+# TC: O(E)
+# SC: O(N)
 
 class Solution:
     def minimumSemesters(self, N: int, relations: List[List[int]]) -> int:
-        graph = {i: [] for i in range(1, N + 1)}
-        in_count = {i: 0 for i in range(1, N + 1)}  # or in-degree
-        for start_node, end_node in relations:
-            graph[start_node].append(end_node)
-            in_count[end_node] += 1
-
-        queue = []
-        # we use list here since we are not
-        # poping from front the this code
-        for node in graph:
-            if in_count[node] == 0:
-                queue.append(node)
-
-        step = 0
-        studied_count = 0
-        # start learning with BFS
-        while queue:
-            # start new semester
-            step += 1
-            next_queue = []
-            for node in queue:
-                studied_count += 1
-                end_nodes = graph[node]
-                for end_node in end_nodes:
-                    in_count[end_node] -= 1
-                    # if all prerequisite courses learned
-                    if in_count[end_node] == 0:
-                        next_queue.append(end_node)
-            queue = next_queue
-
-        return step if studied_count == N else -1
+        semesters = 0
+        sortedOrder = []
+        
+        # initializing graph
+        indegree = {i: 0 for i in range(1, N+1)}
+        adj_list_graph = {i: [] for i in range(1, N+1)}
+        
+        # build graph
+        for prereq in relations:
+            parent, child = prereq[0], prereq[1]
+            adj_list_graph[parent].append(child)
+            indegree[child] += 1
+        
+        # find all sources
+        sources = deque()
+        for key in indegree:
+            if indegree[key] == 0:
+                sources.append(key)
+        
+        # count number of semesters for each set of source-courses
+        while sources:
+            semesters += 1
+            course_count = len(sources)
+            while course_count > 0:
+                curr = sources.popleft()
+                sortedOrder.append(curr)
+                course_count -= 1
+                for child in adj_list_graph[curr]:
+                    indegree[child] -= 1
+                    if indegree[child] == 0: sources.append(child)
+        
+        # check if all courses are taken
+        if len(sortedOrder) == N:
+            return semesters
+        else:
+            return -1
+        
