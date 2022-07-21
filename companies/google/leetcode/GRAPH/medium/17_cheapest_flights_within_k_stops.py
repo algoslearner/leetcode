@@ -108,3 +108,19 @@ class Solution:
 # https://leetcode.com/problems/cheapest-flights-within-k-stops/solution/
 # TC:
 # SC: 
+# https://leetcode.com/problems/cheapest-flights-within-k-stops/discuss/115596/c%2B%2B-8-line-bellman-ford
+
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K: int) -> int:
+        costs = [float('inf')] * n
+        costs[src] = 0
+
+        # bellman ford - dp: run for K+1 iterations
+        for _ in range(K+1):
+            copy = costs[:]
+            for s, d, w in flights:
+                copy[d] = min(copy[d], costs[s] + w)
+            costs = copy
+
+        return -1 if costs[dst] == float('inf') else costs[dst]
+        
