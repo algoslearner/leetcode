@@ -91,3 +91,29 @@ class Solution:
         
         seen = set()    
         return dfs(start, end, seen)
+##############################################################
+# DFS - iterative
+
+class Solution:
+    def validPath(self, n: int, edges: List[List[int]], start: int, end: int) -> bool:
+        adj_list_graph = defaultdict(list)
+        for edge in edges:
+            parent, child = edge[0], edge[1]
+            adj_list_graph[parent].append(child)
+            adj_list_graph[child].append(parent)
+        
+        seen = set()
+        stack = [start]
+        while stack:
+            curr = stack.pop()
+            
+            if curr == end: 
+                return True
+            
+            if curr in seen:
+                continue
+            
+            seen.add(curr)
+            for child in adj_list_graph[curr]:
+                stack.append(child)
+        return False
