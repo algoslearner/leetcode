@@ -55,16 +55,16 @@ class Solution:
             adj_list_graph[u].append((v, w))
         
         # dijkstra's shortest path algorithm, starting from node k
-        sources_minheap = [(0, k)]
+        heap = [(0, k)]
         shortest_path = {}
         
-        while sources_minheap:
-            w, source = heapq.heappop(sources_minheap)
-            if source not in shortest_path:
-                shortest_path[source] = w
+        while heap:
+            w, u = heapq.heappop(heap)
+            if u not in shortest_path:
+                shortest_path[u] = w
                 
-                for child, child_w in adj_list_graph[source]:
-                    heapq.heappush(sources_minheap, (w + child_w, child))
+                for child, child_w in adj_list_graph[u]:
+                    heapq.heappush(heap, (w + child_w, child))
         
         # return shortest path
         if len(shortest_path) == n:
