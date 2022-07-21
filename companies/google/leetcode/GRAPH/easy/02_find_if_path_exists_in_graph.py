@@ -93,6 +93,8 @@ class Solution:
         return dfs(start, end, seen)
 ##############################################################
 # DFS - iterative
+# TC: O(V + E)
+# SC: O(V + E)
 
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], start: int, end: int) -> bool:
